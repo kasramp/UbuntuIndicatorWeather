@@ -1,0 +1,2 @@
+indicator-weather usr/bin/
+indicator-weather.desktop etc/xdg/autostart

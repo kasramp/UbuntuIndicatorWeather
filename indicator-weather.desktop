@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Indicator Weather
+Exec=/usr/bin/indicator-weather
+NoDisplay=true
+StartupNotify=false
+Terminal=false
+OnlyShowIn=Unity;GNOME;
+AutostartCondition=GNOME3 unless-session gnome
+X-Ubuntu-Gettext-Domain=indicator-weather

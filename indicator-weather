@@ -1,0 +1,86 @@
+
+#! /bin/sh
+""":"
+exec python $0 ${1+"$@"}
+"""
+
+# This file is part of indicator-weather.
+# Indicator Weather is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3
+# as published by the Free Software Foundation.
+#
+# Indicator Weather is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.  <http://www.gnu.org/licenses/>
+#
+# Author(s):
+# (C) 2015 Kasra Madadipouya <kasra@madadipouya.com>
+
+import sys
+import gtk
+import appindicator
+import urllib
+import json
+
+PING_FREQUENCY = 10 # minutes
+
+class GetWeather:
+    def __init__(self):
+        self.ind = appindicator.Indicator("weather-indicator",
+                                           "weather-clear",
+        #file:///usr/share/icons/ubuntu-mono-light/status/16 
+                                           appindicator.CATEGORY_APPLICATION_STATUS)
+        self.ind.set_status(appindicator.STATUS_ACTIVE)
+        self.menu_setup()
+        self.ind.set_menu(self.menu)
+    def menu_setup(self):
+        self.menu = gtk.Menu()
+        self.quit_item = gtk.MenuItem("Quit")
+        self.quit_item.connect("activate", self.quit)
+        self.quit_item.show()
+        self.menu.append(self.quit_item)
+        self.temp_item = gtk.MenuItem("")
+        #self.temp_item.connect("activate")
+        self.temp_item.show()
+        self.menu.append(self.temp_item)
+    def main(self):
+        self.get_weather()
+        gtk.timeout_add(PING_FREQUENCY * 60000, self.get_weather)
+        gtk.main()
+
+    def quit(self, widget):
+        sys.exit(0)
+
+    def get_weather(self):
+        country,city = self.get_location()
+        url = 'http://api.openweathermap.org/data/2.5/weather?appid=c15e2598880e57fad011a64061948fac&q=' + country + ',' + city + '&units=metric'
+        u = urllib.urlopen(url)
+        data = u.read()
+        #print data
+        j = json.loads(data)
+        temp = j['main']['temp']
+        print temp
+        degree = u"\u2103"
+        rtn_val = str(temp) + degree + ' ' + city
+        self.ind.set_label(rtn_val)
+        self.temp_item.get_child().set_text(rtn_val)        
+        return True
+
+    def get_location(self):
+        
+        try:
+        	url = 'http://ipinfo.io/json/'
+        	u = urllib.urlopen(url)
+        	data = u.read()
+        	j = json.loads(data)
+        	country = j['country']
+        	city = j['city']
+        	return (country,city)
+        except:
+            return False,0
+
+if __name__ == "__main__":
+    indicator = GetWeather()
+    indicator.main()
+

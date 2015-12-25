@@ -1,0 +1,22 @@
+Source: indicator-weather
+Section: python
+Priority: optional
+Maintainer: Kasra Madadipouya, <kasra@madadipouya.com>
+Build-Depends: debhelper (>= 7),
+               python (>= 2.6.6-3~)
+Standards-Version: 3.9.2
+X-Python-Version: >= 2.6
+
+
+Package: indicator-weather
+Architecture: all
+Section: python
+Depends: python-appindicator, ${misc:Depends}, ${python:Depends}
+Description: Display weather temperature
+ Indicator Weather is a simple indicator to get
+ weather temperature automatically. It calls
+ two web services to detect location and gets
+ weather temperature. Then it displays in the small
+ indicator for users. Weather updates every ten minutes
+ and it requires internet connection  
+ .
