@@ -15,11 +15,16 @@ You can either user .deb package under pkg folder if you are using Ubuntu or Deb
 
 Source code is in src folder which contains debian package structure and startup script
 
+## Screenshot
+<p align="center">
+<img src="http://blog.madadipouya.com/wp-content/uploads/2014/07/Screenshot-from-2015-12-25-14-08-10.png" alt="Drawing" height="26" width="148"/>
+</p>
+
 ## Contact
 * kasra@madadipouya.com
 * kasra_mp@live.com
 	
-##License
+## License
 Indicator Weather is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 3
 as published by the Free Software Foundation.
