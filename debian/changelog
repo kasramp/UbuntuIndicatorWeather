@@ -1,4 +1,4 @@
-indicator-weather (0.1ubuntu) trusty; urgency=low
+indicator-weather (0.2ubuntu) trusty; urgency=low
 
   * Basic indicator functionalities, with some enhancements
   * Change webservice url, move to in house web service

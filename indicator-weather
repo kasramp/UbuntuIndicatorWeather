@@ -62,10 +62,14 @@ class GetWeather:
         #temp = j['main']['temp']
         temp = j['temperature']
         city = j['geoLocation']
-        city = city.strip().split(",")
+        if city :
+        	city = city.strip().split(",")
         print temp
         degree = u"\u2103"
-        rtn_val = str(temp) + degree + ' ' + city[1]
+        if city :
+        	rtn_val = str(temp) + degree + ' ' + city[1]
+        else :
+        	rtn_val = str(temp) + degree + ' ' + city
         self.ind.set_label(rtn_val)
         self.temp_item.get_child().set_text(rtn_val)        
         return True
