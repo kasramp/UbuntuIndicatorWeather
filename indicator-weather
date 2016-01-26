@@ -53,16 +53,19 @@ class GetWeather:
         sys.exit(0)
 
     def get_weather(self):
-        country,city = self.get_location()
-        url = 'http://api.openweathermap.org/data/2.5/weather?appid=c15e2598880e57fad011a64061948fac&q=' + country + ',' + city + '&units=metric'
+        lat,lon = self.get_location()
+        #3.0376280&lon=101.7060280
+        url = 'http://weatherwebservicecall.herokuapp.com/current?lat=' + lat + '&lon=' + lon
         u = urllib.urlopen(url)
         data = u.read()
-        #print data
         j = json.loads(data)
-        temp = j['main']['temp']
+        #temp = j['main']['temp']
+        temp = j['temperature']
+        city = j['geoLocation']
+        city = city.strip().split(",")
         print temp
         degree = u"\u2103"
-        rtn_val = str(temp) + degree + ' ' + city
+        rtn_val = str(temp) + degree + ' ' + city[1]
         self.ind.set_label(rtn_val)
         self.temp_item.get_child().set_text(rtn_val)        
         return True
@@ -74,9 +77,11 @@ class GetWeather:
         	u = urllib.urlopen(url)
         	data = u.read()
         	j = json.loads(data)
-        	country = j['country']
-        	city = j['city']
-        	return (country,city)
+        	loc = j['loc']
+        	y = loc.strip().split(",")
+        	lat = y[0]
+        	lon = y[1]
+        	return (lat,lon)
         except:
             return False,0
 

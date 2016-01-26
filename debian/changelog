@@ -1,5 +1,6 @@
 indicator-weather (0.1ubuntu) trusty; urgency=low
 
   * Basic indicator functionalities, with some enhancements
+  * Change webservice url, move to in house web service
 
- -- Kasra Madadipouya <kasra@madadipouya.com>  Fri, 25 Dec 2015 10:37:40 +0800
+ -- Kasra Madadipouya <kasra@madadipouya.com>  Tue, 26 Jan 2016 16:50:20 +0800
