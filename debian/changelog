@@ -1,6 +1,7 @@
-indicator-weather (0.2ubuntu) trusty; urgency=low
+indicator-weather (0.3ubuntu) trusty; urgency=low
 
   * Basic indicator functionalities, with some enhancements
   * Change webservice url, move to in house web service
+  * Dynamic icon selection according to weather condition
 
  -- Kasra Madadipouya <kasra@madadipouya.com>  Tue, 26 Jan 2016 16:50:20 +0800
