@@ -78,13 +78,14 @@ class GetWeather:
         return True
 
     def get_icon_name_local(self,icon_name):
-        if icon_name is "01d":
+        print icon_name
+        if icon_name == "01d":
             return "weather-clear"
-        elif icon_name is "01n":
+        elif icon_name == "01n":
             return "weather-clear-night"
-        elif icon_name is "02d":
+        elif icon_name == "02d":
             return "weather-few-clouds"
-        elif icon_name is "02n":
+        elif icon_name == "02n":
             return "weather-few-clouds-night"
         elif icon_name in ("03d", "03n"):
             return "ubuntuone-client-idle"
