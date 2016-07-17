@@ -18,67 +18,94 @@ exec python $0 ${1+"$@"}
 # (C) 2015 Kasra Madadipouya <kasra@madadipouya.com>
 
 import sys
-import gtk
-import appindicator
 import urllib
 import json
+import gi
+from preference import Dialog
+from configuration import Configuration
+from gi.repository import Gtk, GLib
+gi.require_version('Gtk', '3.0')
+from gi.repository import AppIndicator3 as appIndicator
 
-PING_FREQUENCY = 10 # minutes
+PING_FREQUENCY = 600 # 10 minutes
 
-class GetWeather:
+class WeatherIndicator:
+   
     def __init__(self):
-        self.ind = appindicator.Indicator("weather-indicator",
-                                           "weather-clear",
-        #file:///usr/share/icons/ubuntu-mono-light/status/16 
-                                           appindicator.CATEGORY_APPLICATION_STATUS)
-        self.ind.set_status(appindicator.STATUS_ACTIVE)
+        self.configuration = Configuration()
+
+        self.indicator = appIndicator.Indicator.new(("weather-indicator"),
+            ("weather-indicator"), appIndicator.IndicatorCategory.OTHER)
+        self.indicator.set_status(appIndicator.IndicatorStatus.ACTIVE)
+        self.indicator.set_icon("weather-clear")
         self.menu_setup()
-        self.ind.set_menu(self.menu)
+        self.indicator.set_menu(self.menu)
+
     def menu_setup(self):
-        self.menu = gtk.Menu()
-        self.quit_item = gtk.MenuItem("Quit")
+        self.menu = Gtk.Menu()
+
+        self.temp_item = Gtk.MenuItem("")
+        self.temp_item.show()
+        self.menu.append(self.temp_item)
+
+        self.preference_item = Gtk.MenuItem("Preference")
+        self.preference_item.connect("activate", self.preference)
+        self.preference_item.show()
+        self.menu.append(self.preference_item)
+
+        self.quit_item = Gtk.MenuItem("Quit")
         self.quit_item.connect("activate", self.quit)
         self.quit_item.show()
         self.menu.append(self.quit_item)
-        self.temp_item = gtk.MenuItem("")
-        #self.temp_item.connect("activate")
-        self.temp_item.show()
-        self.menu.append(self.temp_item)
+    
     def main(self):
         self.get_weather()
-        gtk.timeout_add(PING_FREQUENCY * 60000, self.get_weather)
-        gtk.main()
+        GLib.timeout_add_seconds(PING_FREQUENCY, self.get_weather)
+        Gtk.main()
 
     def quit(self, widget):
         sys.exit(0)
 
+
+    def preference(self, widget):
+        preference_dialog = Dialog()
+        preference_dialog.main()
+        self.configuration = Configuration()
+        self.get_weather()
+
+
     def get_weather(self):
-        lat,lon = self.get_location()
-        #3.0376280&lon=101.7060280
-        url = 'http://weatherwebservicecall.herokuapp.com/current?lat=' + lat + '&lon=' + lon
+        if(self.configuration.is_automatic_location_detection()):
+            latitude,longitude = self.get_location()
+        else:
+            latitude = str(self.configuration.get_latitude())
+            longitude = str(self.configuration.get_longitude())
+        url = 'http://weatherwebservicecall.herokuapp.com/current?lat=' + latitude + '&lon=' + longitude
+        if(self.configuration.get_temperature_scale() == 1):
+            url += '&fahrenheit=true'
         u = urllib.urlopen(url)
         data = u.read()
         j = json.loads(data)
-        #temp = j['main']['temp']
         temp = j['temperature']
         city = j['geoLocation']
         icon_name = j['iconName']
         icon_name = self.get_icon_name_local(icon_name)
         if city :
         	city = city.strip().split(",")
-        print temp
-        degree = u"\u2103"
+        if(self.configuration.get_temperature_scale() == 0):
+            degree = u"\u2103"
+        else:
+            degree = u"\u2109"
+
         if city :
         	rtn_val = str(temp) + degree + ' ' + city[1]
         else :
         	rtn_val = str(temp) + degree + ' ' + city
-        self.ind.set_label(rtn_val)
-        self.ind.set_icon(icon_name)
-        self.temp_item.get_child().set_text(rtn_val)        
-        return True
+        self.indicator.set_label(rtn_val, rtn_val)
+        self.indicator.set_icon(icon_name)
+        self.temp_item.get_child().set_text(rtn_val)
 
-    def get_icon_name_local(self,icon_name):
-        print icon_name
+    def get_icon_name_local(self, icon_name):
         if icon_name == "01d":
             return "weather-clear"
         elif icon_name == "01n":
@@ -118,6 +145,5 @@ class GetWeather:
             return False,0
 
 if __name__ == "__main__":
-    indicator = GetWeather()
+    indicator = WeatherIndicator()
     indicator.main()
-
