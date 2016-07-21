@@ -17,6 +17,7 @@ import os
 from os.path import expanduser
 
 class Configuration:
+
     def __init__(self):
         self.file_name = self.__get_home_directory() + '/config.json'
         self.json_configuration = self.__create_folder_and_config_file_if_not_exist()
@@ -41,10 +42,12 @@ class Configuration:
             json.dump(content, f)
 
     def __create_default_configuration_and_save_to_disk(self):
-        config = {'temperature_scale': '0', 
-        'automatic_location_detection': 'True', 
-        'latitude': '0.00000', 
-        'longitude': '0.00000'}
+        config = { 
+        	Parameter.TEMPERATURE_SCALE: '0', 
+        	Parameter.AUTOMATIC_LOCATION_DETECTION: 'True', 
+        	Parameter.LATITUDE: '0.00000', 
+        	Parameter.LONGITUDE: '0.00000'
+        }
         self.__save_configuration_to_disk(config)
         return self.__load_configuration_from_disk()
 
@@ -52,31 +55,48 @@ class Configuration:
         return expanduser('~') + '/.indicator-weather'
     
     def get_temperature_scale(self):
-        return int(self.json_configuration['temperature_scale'])
+        return int(self.json_configuration[Parameter.TEMPERATURE_SCALE])
 
     def set_temperature_scale(self, value):
-        self.json_configuration['temperature_scale'] = int(value)
+        self.json_configuration[Parameter.TEMPERATURE_SCALE] = int(value)
 
     def get_automatic_location_detection(self):
         return self.is_automatic_location_detection()
     
     def set_automatic_location_detection(self, value):
-        self.json_configuration['automatic_location_detection'] = value
+        self.json_configuration[Parameter.AUTOMATIC_LOCATION_DETECTION] = value
 
     def is_automatic_location_detection(self):
-        return ast.literal_eval(self.json_configuration['automatic_location_detection'])
+        return ast.literal_eval(self.json_configuration[Parameter.AUTOMATIC_LOCATION_DETECTION])
 
     def get_latitude(self):
-        return float(self.json_configuration['latitude'])
+        return float(self.json_configuration[Parameter.LATITUDE])
 
     def set_latitude(self, value):
-        self.json_configuration['latitude'] = float(value)
+        self.json_configuration[Parameter.LATITUDE] = float(value)
 
     def get_longitude(self):
-        return float(self.json_configuration['longitude'])
+        return float(self.json_configuration[Parameter.LONGITUDE])
 
     def set_longitude(self, value):
-        self.json_configuration['longitude'] = float(value)
+        self.json_configuration[Parameter.LONGITUDE] = float(value)
+
+    def get_coordinates(self):
+        return self.get_latitude(), self.get_longitude()
+
+    def set_coordinates(self, latitude, longitude):
+        self.set_latitude(latitude)
+        self.set_longitude(longitude)
 
     def save_configuration(self):
         self.__save_configuration_to_disk(self.json_configuration)
+
+    def reload_configuration(self):
+    	self.json_configuration = self.__load_configuration_from_disk()
+
+class Parameter:
+		LATITUDE = 'latitude'
+		LONGITUDE = 'longitude'
+		AUTOMATIC_LOCATION_DETECTION = 'automatic_location_detection'
+		TEMPERATURE_SCALE = 'temperature_scale'
+    

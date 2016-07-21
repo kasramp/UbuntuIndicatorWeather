@@ -27,15 +27,42 @@ from gi.repository import Gtk, GLib
 gi.require_version('Gtk', '3.0')
 from gi.repository import AppIndicator3 as appIndicator
 
-PING_FREQUENCY = 600 # 10 minutes
+PING_FREQUENCY_IN_SECONDS = 600 # 10 minutes
+
+ICON_NAMES = {
+    "01d": "weather-clear",
+    "01n": "weather-clear-night",
+    "02d": "weather-few-clouds",
+    "02n": "weather-few-clouds-night",
+    "03d": "ubuntuone-client-idle",
+    "04d": "weather-overcast",
+    "09d": "weather-showers",
+    "10d": "weather-showers-scattered",
+    "11d": "weather-storm",
+    "13d": "weather-snow",
+    "50d": "weather-fog",
+}
+
+def get_local_icon_name(code):
+    if code in ICON_NAMES:
+        return ICON_NAMES[code]
+    else:
+        day_code = code[:2] + 'd'
+    return ICON_NAMES[day_code]
+
+def get_location():
+        location_service_url = 'http://ipinfo.io/json/'
+        json_response = json.loads(urllib.urlopen(location_service_url).read())
+        location_coordinates = json_response['loc']
+        latitude, longitude = location_coordinates.strip().split(",")
+        return (latitude,longitude)
 
 class WeatherIndicator:
    
     def __init__(self):
         self.configuration = Configuration()
-
-        self.indicator = appIndicator.Indicator.new(("weather-indicator"),
-            ("weather-indicator"), appIndicator.IndicatorCategory.OTHER)
+        self.indicator = appIndicator.Indicator.new(
+            "weather-indicator", "weather-indicator", appIndicator.IndicatorCategory.OTHER)
         self.indicator.set_status(appIndicator.IndicatorStatus.ACTIVE)
         self.indicator.set_icon("weather-clear")
         self.menu_setup()
@@ -43,16 +70,13 @@ class WeatherIndicator:
 
     def menu_setup(self):
         self.menu = Gtk.Menu()
-
-        self.temp_item = Gtk.MenuItem("")
-        self.temp_item.show()
-        self.menu.append(self.temp_item)
-
+        self.temperature_item = Gtk.MenuItem("")
+        self.temperature_item.show()
+        self.menu.append(self.temperature_item)
         self.preference_item = Gtk.MenuItem("Preference")
         self.preference_item.connect("activate", self.preference)
         self.preference_item.show()
         self.menu.append(self.preference_item)
-
         self.quit_item = Gtk.MenuItem("Quit")
         self.quit_item.connect("activate", self.quit)
         self.quit_item.show()
@@ -60,7 +84,7 @@ class WeatherIndicator:
     
     def main(self):
         self.get_weather()
-        GLib.timeout_add_seconds(PING_FREQUENCY, self.get_weather)
+        GLib.timeout_add_seconds(PING_FREQUENCY_IN_SECONDS, self.get_weather)
         Gtk.main()
 
     def quit(self, widget):
@@ -70,79 +94,35 @@ class WeatherIndicator:
     def preference(self, widget):
         preference_dialog = Dialog()
         preference_dialog.main()
-        self.configuration = Configuration()
+        self.configuration.reload_configuration()
         self.get_weather()
 
 
     def get_weather(self):
         if(self.configuration.is_automatic_location_detection()):
-            latitude,longitude = self.get_location()
+            latitude, longitude = get_location()
         else:
-            latitude = str(self.configuration.get_latitude())
-            longitude = str(self.configuration.get_longitude())
-        url = 'http://weatherwebservicecall.herokuapp.com/current?lat=' + latitude + '&lon=' + longitude
-        if(self.configuration.get_temperature_scale() == 1):
-            url += '&fahrenheit=true'
-        u = urllib.urlopen(url)
-        data = u.read()
-        j = json.loads(data)
-        temp = j['temperature']
-        city = j['geoLocation']
-        icon_name = j['iconName']
-        icon_name = self.get_icon_name_local(icon_name)
-        if city :
-        	city = city.strip().split(",")
-        if(self.configuration.get_temperature_scale() == 0):
-            degree = u"\u2103"
+            latitude, longitude = self.configuration.get_coordinates()
+        if(self.configuration.get_temperature_scale()):
+            temperature_scale = 'true'
+            temperature_symbol = u'\u2109'
         else:
-            degree = u"\u2109"
+            temperature_scale = 'false'
+            temperature_symbol = u'\u2103'
 
-        if city :
-        	rtn_val = str(temp) + degree + ' ' + city[1]
-        else :
-        	rtn_val = str(temp) + degree + ' ' + city
-        self.indicator.set_label(rtn_val, rtn_val)
+        weather_service_url = (
+            'http://weatherwebservicecall.herokuapp.com/'
+            'current?lat={}&lon={}&fahrenheit={}'.format(latitude, longitude, temperature_scale))
+        json_response = json.loads(urllib.urlopen(weather_service_url).read())
+        temperature = json_response['temperature']
+        location = json_response['geoLocation']
+        icon_code = json_response['iconName']
+        icon_name = get_local_icon_name(icon_code)
+        city = location.strip().rsplit(",")[-1]
+        label = u'{temperature}{temperature_symbol} {city}'.format(**locals())
+        self.indicator.set_label(label, label)
         self.indicator.set_icon(icon_name)
-        self.temp_item.get_child().set_text(rtn_val)
-
-    def get_icon_name_local(self, icon_name):
-        if icon_name == "01d":
-            return "weather-clear"
-        elif icon_name == "01n":
-            return "weather-clear-night"
-        elif icon_name == "02d":
-            return "weather-few-clouds"
-        elif icon_name == "02n":
-            return "weather-few-clouds-night"
-        elif icon_name in ("03d", "03n"):
-            return "ubuntuone-client-idle"
-        elif icon_name in ("04d", "04n"):
-            return "weather-overcast"
-        elif icon_name in ("09d", "09n"):
-            return "weather-showers"
-        elif icon_name in ("10d", "10n"):
-            return "weather-showers-scattered"
-        elif icon_name in ("11d", "11n"):
-            return "weather-storm"
-        elif icon_name in ("13d", "13n"):
-            return "weather-snow"
-        elif icon_name in ("50d", "50n"):
-            return "weather-fog"
-    
-    def get_location(self):
-        
-        try:
-        	url = 'http://ipinfo.io/json/'
-        	u = urllib.urlopen(url)
-        	data = u.read()
-        	j = json.loads(data)
-        	loc = j['loc']
-        	y = loc.strip().split(",")
-        	lat = y[0]
-        	lon = y[1]
-        	return (lat,lon)
-        except:
-            return False,0
+        self.temperature_item.get_child().set_text(label)
 
 if __name__ == "__main__":
     indicator = WeatherIndicator()
