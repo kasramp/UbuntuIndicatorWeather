@@ -11,7 +11,7 @@ X-Python-Version: >= 2.6
 Package: indicator-weather
 Architecture: all
 Section: python
-Depends: python-appindicator, ${misc:Depends}, ${python:Depends}
+Depends: gir1.2-appindicator3-0.1 (>= 12.10.1~), python-gtk2
 Description: Display weather temperature
  Indicator Weather is a simple indicator to get
  weather temperature automatically. It calls

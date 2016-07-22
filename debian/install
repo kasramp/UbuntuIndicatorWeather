@@ -1,2 +1,5 @@
-indicator-weather usr/bin/
+indicator-weather usr/lib/ubuntu-indicator-weather
+configuration.py usr/lib/ubuntu-indicator-weather
+preference.py usr/lib/ubuntu-indicator-weather
+ui.glade usr/share/ubuntu-indicator-weather
 indicator-weather.desktop etc/xdg/autostart
