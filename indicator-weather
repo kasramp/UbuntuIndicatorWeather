@@ -118,7 +118,7 @@ class WeatherIndicator:
         location = json_response['geoLocation']
         icon_code = json_response['iconName']
         icon_name = get_local_icon_name(icon_code)
-        city = location.strip().rsplit(",")[-1]
+        city = location.strip().rsplit(",")[0]
         label = u'{temperature}{temperature_symbol} {city}'.format(**locals())
         self.indicator.set_label(label, label)
         self.indicator.set_icon(icon_name)
