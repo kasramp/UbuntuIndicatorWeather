@@ -4,5 +4,6 @@ indicator-weather (0.5ubuntu) trusty; urgency=low
   * Configuration file
   * Manual coordinates
   * Fahrenheit temperature scale
+  * Location detection improvement
 
- -- Kasra Madadipouya <kasra@madadipouya.com>  Mon, 25 July 2016 00:00:00 +0800
+ -- Kasra Madadipouya <kasra@madadipouya.com>  Sat, 30 July 2016 09:55:00 +0800
