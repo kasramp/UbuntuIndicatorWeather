@@ -6,7 +6,7 @@ UbuntuIndicatorWeather is a very simple weather indicator for Ubuntu unity and G
 The indicator has dependencies for Python >= 2.7 and requires some Python libraries which are listed below
 * Python >= 2.7
 * Python gtk library
-* Python appindicator library
+* Gir1.2-appindicator3-0.1
 * Python urllib
 * Python json library
 
