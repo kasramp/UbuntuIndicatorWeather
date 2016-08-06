@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Indicator Weather
+Comment=Simple weather indicator
 Exec=/usr/bin/indicator-weather
 NoDisplay=true
 StartupNotify=false
