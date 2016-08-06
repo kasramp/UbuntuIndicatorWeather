@@ -11,9 +11,7 @@ The indicator has dependencies for Python >= 2.7 and requires some Python librar
 * Python json library
 
 ## How to use
-You can either user .deb package under pkg folder if you are using Ubuntu or Debian based distributions or .tar.gz one for other distributions. 
-
-Source code is in src folder which contains debian package structure and startup script
+You can use either .deb package from releases tab if you are using Ubuntu or Debian based distributions or .tar.gz for other distributions.
 
 ## Screenshot
 <p align="center">
