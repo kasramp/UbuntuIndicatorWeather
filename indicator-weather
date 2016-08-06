@@ -99,31 +99,33 @@ class WeatherIndicator:
 
 
     def get_weather(self):
-        if(self.configuration.is_automatic_location_detection()):
-            latitude, longitude = get_location()
-        else:
-            latitude, longitude = self.configuration.get_coordinates()
-        if(self.configuration.get_temperature_scale()):
-            temperature_scale = 'true'
-            temperature_symbol = u'\u2109'
-        else:
-            temperature_scale = 'false'
-            temperature_symbol = u'\u2103'
+    	try:
+	        if(self.configuration.is_automatic_location_detection()):
+	            latitude, longitude = get_location()
+	        else:
+	            latitude, longitude = self.configuration.get_coordinates()
+	        if(self.configuration.get_temperature_scale()):
+	            temperature_scale = 'true'
+	            temperature_symbol = u'\u2109'
+	        else:
+	            temperature_scale = 'false'
+	            temperature_symbol = u'\u2103'
 
-        weather_service_url = (
-            'http://weatherwebservicecall.herokuapp.com/'
-            'current?lat={}&lon={}&fahrenheit={}'.format(latitude, longitude, temperature_scale))
-        json_response = json.loads(urllib.urlopen(weather_service_url).read())
-        temperature = json_response['temperature']
-        location = json_response['geoLocation']
-        icon_code = json_response['iconName']
-        icon_name = get_local_icon_name(icon_code)
-        city = location.strip().rsplit(",")[0]
-        label = u'{temperature}{temperature_symbol} {city}'.format(**locals())
-        self.indicator.set_label(label, label)
-        self.indicator.set_icon(icon_name)
-        self.temperature_item.get_child().set_text(label)
-        return True # Make sure timer loop continues
+	        weather_service_url = (
+	            'http://weatherwebservicecall.herokuapp.com/'
+	            'current?lat={}&lon={}&fahrenheit={}'.format(latitude, longitude, temperature_scale))
+	        json_response = json.loads(urllib.urlopen(weather_service_url).read())
+	        temperature = json_response['temperature']
+	        location = json_response['geoLocation']
+	        icon_code = json_response['iconName']
+	        icon_name = get_local_icon_name(icon_code)
+	        city = location.strip().rsplit(",")[0]
+	        label = u'{temperature}{temperature_symbol} {city}'.format(**locals())
+	        self.indicator.set_label(label, label)
+	        self.indicator.set_icon(icon_name)
+	        self.temperature_item.get_child().set_text(label)
+        finally:
+	    	return True # Make sure timer loop continues
 
 if __name__ == "__main__":
     indicator = WeatherIndicator()
