@@ -1,9 +1,9 @@
-indicator-weather (0.5ubuntu) trusty; urgency=low
+indicator-weather (0.6ubuntu) trusty; urgency=low
 
-  * Preference menu
-  * Configuration file
-  * Manual coordinates
-  * Fahrenheit temperature scale
-  * Location detection improvement
+  * New Location detection API
+  * Moved to robust API end point with higher uptime
+  * Hide location preference
+  * Round temperature preference
+  * Minor bug fixes
 
- -- Kasra Madadipouya <kasra@madadipouya.com>  Sat, 30 July 2016 09:55:00 +0800
+ -- Kasra Madadipouya <kasra@madadipouya.com>  Fri, 19 August 2016 23:07:00 +0800
