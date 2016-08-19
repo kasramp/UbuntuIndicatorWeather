@@ -51,11 +51,10 @@ def get_local_icon_name(code):
     return ICON_NAMES[day_code]
 
 def get_location():
-        location_service_url = 'http://ipinfo.io/json/'
+
+        location_service_url = 'http://ip-api.com/json/'
         json_response = json.loads(urllib.urlopen(location_service_url).read())
-        location_coordinates = json_response['loc']
-        latitude, longitude = location_coordinates.strip().split(",")
-        return (latitude,longitude)
+        return (json_response['lat'],json_response['lon'])
 
 class WeatherIndicator:
    
