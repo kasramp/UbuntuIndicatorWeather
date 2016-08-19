@@ -21,6 +21,7 @@ class Configuration:
     def __init__(self):
         self.file_name = self.__get_home_directory() + '/config.json'
         self.json_configuration = self.__create_folder_and_config_file_if_not_exist()
+        self.__apply_change_log()
 
     def __create_folder_and_config_file_if_not_exist(self):
         if not os.path.exists(os.path.dirname(self.file_name)):
@@ -46,7 +47,9 @@ class Configuration:
         	Parameter.TEMPERATURE_SCALE: '0', 
         	Parameter.AUTOMATIC_LOCATION_DETECTION: 'True', 
         	Parameter.LATITUDE: '0.00000', 
-        	Parameter.LONGITUDE: '0.00000'
+        	Parameter.LONGITUDE: '0.00000',
+            Parameter.HIDE_LOCATION: 'False',
+            Parameter.ROUND_TEMPERATURE: 'False'
         }
         self.__save_configuration_to_disk(config)
         return self.__load_configuration_from_disk()
@@ -54,6 +57,14 @@ class Configuration:
     def __get_home_directory(self):
         return expanduser('~') + '/.indicator-weather'
     
+    def __apply_change_log(self):
+        if Parameter.HIDE_LOCATION not in self.json_configuration:
+            self.json_configuration[Parameter.HIDE_LOCATION] = 'False'
+            self.save_reload_configuration()
+        if Parameter.ROUND_TEMPERATURE not in self.json_configuration:
+            self.json_configuration[Parameter.ROUND_TEMPERATURE] = 'False'
+            self.save_reload_configuration()
+
     def get_temperature_scale(self):
         return int(self.json_configuration[Parameter.TEMPERATURE_SCALE])
 
@@ -88,15 +99,39 @@ class Configuration:
         self.set_latitude(latitude)
         self.set_longitude(longitude)
 
+    def get_hide_location(self):
+        return self.is_hide_location()
+    
+    def set_hide_location(self, value):
+        self.json_configuration[Parameter.HIDE_LOCATION] = value
+
+    def is_hide_location(self):
+        return ast.literal_eval(self.json_configuration[Parameter.HIDE_LOCATION])
+
+    def get_round_temperature(self):
+        return self.is_round_temperature()
+    
+    def set_round_temperature(self, value):
+        self.json_configuration[Parameter.ROUND_TEMPERATURE] = value
+
+    def is_round_temperature(self):
+        return ast.literal_eval(self.json_configuration[Parameter.ROUND_TEMPERATURE])
+
     def save_configuration(self):
         self.__save_configuration_to_disk(self.json_configuration)
 
     def reload_configuration(self):
     	self.json_configuration = self.__load_configuration_from_disk()
 
+    def save_reload_configuration(self):
+        self.save_configuration()
+        self.reload_configuration()
+
 class Parameter:
-		LATITUDE = 'latitude'
-		LONGITUDE = 'longitude'
-		AUTOMATIC_LOCATION_DETECTION = 'automatic_location_detection'
-		TEMPERATURE_SCALE = 'temperature_scale'
+    LATITUDE = 'latitude'
+    LONGITUDE = 'longitude'
+    AUTOMATIC_LOCATION_DETECTION = 'automatic_location_detection'
+    TEMPERATURE_SCALE = 'temperature_scale'
+    HIDE_LOCATION = 'hide_location'
+    ROUND_TEMPERATURE = 'round_temperature'
     

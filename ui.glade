@@ -145,7 +145,7 @@
                 <property name="digits">6</property>
               </object>
               <packing>
-                <property name="x">164</property>
+                <property name="x">158</property>
                 <property name="y">65</property>
               </packing>
             </child>
@@ -171,7 +171,7 @@
                 <property name="digits">6</property>
               </object>
               <packing>
-                <property name="x">164</property>
+                <property name="x">158</property>
                 <property name="y">100</property>
               </packing>
             </child>
@@ -185,7 +185,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="y">140</property>
+                <property name="y">175</property>
               </packing>
             </child>
             <child>
@@ -196,12 +196,13 @@
               </object>
               <packing>
                 <property name="x">10</property>
-                <property name="y">170</property>
+                <property name="y">205</property>
               </packing>
             </child>
             <child>
               <object class="GtkComboBox" id="combo_temperature_scale">
                 <property name="width_request">153</property>
+                <property name="height_request">29</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="model">list_temperature_scale</property>
@@ -216,8 +217,52 @@
                 </child>
               </object>
               <packing>
-                <property name="x">150</property>
-                <property name="y">165</property>
+                <property name="x">152</property>
+                <property name="y">200</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="switch_hide_location">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="margin_top">2</property>
+              </object>
+              <packing>
+                <property name="x">230</property>
+                <property name="y">132</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_hide_location">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Hide Location:</property>
+              </object>
+              <packing>
+                <property name="x">10</property>
+                <property name="y">135</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="switch_round_temperature">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="margin_top">2</property>
+              </object>
+              <packing>
+                <property name="x">230</property>
+                <property name="y">236</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_round_temperature">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Round Temperature:</property>
+              </object>
+              <packing>
+                <property name="x">10</property>
+                <property name="y">238</property>
               </packing>
             </child>
           </object>

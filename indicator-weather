@@ -115,14 +115,20 @@ class WeatherIndicator:
 	            'current?lat={}&lon={}&fahrenheit={}'.format(latitude, longitude, temperature_scale))
 	        json_response = json.loads(urllib.urlopen(weather_service_url).read())
 	        temperature = json_response['temperature']
+	        if(self.configuration.is_round_temperature()):
+	        	temperature = int(round(float(temperature)))
 	        location = json_response['geoLocation']
 	        icon_code = json_response['iconName']
 	        icon_name = get_local_icon_name(icon_code)
 	        city = location.strip().rsplit(",")[0]
-	        label = u'{temperature}{temperature_symbol} {city}'.format(**locals())
+	        if(self.configuration.is_hide_location()):
+	        	label = u'{temperature}{temperature_symbol}'.format(**locals())
+	        else:
+	        	label = u'{temperature}{temperature_symbol} {city}'.format(**locals())
 	        self.indicator.set_label(label, label)
 	        self.indicator.set_icon(icon_name)
 	        self.temperature_item.get_child().set_text(label)
+
         finally:
 	    	return True # Make sure timer loop continues
 
