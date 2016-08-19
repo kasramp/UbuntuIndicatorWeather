@@ -111,7 +111,7 @@ class WeatherIndicator:
 	            temperature_symbol = u'\u2103'
 
 	        weather_service_url = (
-	            'http://weatherwebservicecall.herokuapp.com/'
+	            'http://weather-api.madadipouya.com/'
 	            'current?lat={}&lon={}&fahrenheit={}'.format(latitude, longitude, temperature_scale))
 	        json_response = json.loads(urllib.urlopen(weather_service_url).read())
 	        temperature = json_response['temperature']
