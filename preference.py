@@ -20,8 +20,7 @@ class Dialog:
 
     def __init__(self):
         self.builder = Gtk.Builder()
-        #self.builder.add_from_file('/usr/share/ubuntu-indicator-weather/ui.glade')
-        self.builder.add_from_file('/media/kixz/30525334-07b6-4d1a-8761-c77afda68390/mygit/UbuntuIndicatorWeather/ui.glade')
+        self.builder.add_from_file('/usr/share/ubuntu-indicator-weather/ui.glade')
         self.builder.connect_signals(self)
         self.window = self.builder.get_object('dialog_preferences')
         self.window.set_transient_for(None)
