@@ -72,7 +72,7 @@ class WeatherIndicator:
         self.temperature_item = Gtk.MenuItem("")
         self.temperature_item.show()
         self.menu.append(self.temperature_item)
-        self.preference_item = Gtk.MenuItem("Preference")
+        self.preference_item = Gtk.MenuItem("Preferences")
         self.preference_item.connect("activate", self.preference)
         self.preference_item.show()
         self.menu.append(self.preference_item)
