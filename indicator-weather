@@ -120,7 +120,7 @@ class WeatherIndicator:
 	        location = json_response['geoLocation']
 	        icon_code = json_response['iconName']
 	        icon_name = get_local_icon_name(icon_code)
-	        city = location.strip().rsplit(",")[0]
+	        city = self.get_city_name(location.strip().rsplit(",")[:2])
 	        if(self.configuration.is_hide_location()):
 	        	label = u'{temperature}{temperature_symbol}'.format(**locals())
 	        else:
@@ -131,6 +131,13 @@ class WeatherIndicator:
 
         finally:
 	    	return True # Make sure timer loop continues
+
+    def get_city_name(self, location):
+        try:    # If location[0] is number, then we will show location[1], which is street
+            city = int(location[0])
+            return location[1]
+        except:
+            return location[0]
 
 if __name__ == "__main__":
     indicator = WeatherIndicator()
