@@ -3,11 +3,22 @@ Upstream-Name: Indicator Weather
 Source: http://blog.madadipouya.com
 
 Files: *
-Copyright: Copyright 2015 Kasra Madadipouya <kasra@madadipouya.com>
+Copyright: 2015-2016 Kasra Madadipouya <kasra@madadipouya.com>
 License: GPL-3
 
-Files: debian/*
-Copyright: Copyright 2015 Kasra Madadipouya <kasra@madadipouya.com>
+Files: debian/source/format
+       debian/changelog
+       debian/control
+       debian/copyright
+       ChangeLog
+       indicator-weather
+Copyright: 2015-2016 Kasra Madadipouya <kasra@madadipouya.com>
+                2016 Anthony Samartsev <ant.samarcev@gmail.com>
+License: GPL-3
+
+Files: indicator-weather.desktop
+Copyright: 2015-2016 Kasra Madadipouya <kasra@madadipouya.com>
+                2016 ALJI Mohamed <mr.m.alji@gmail.com>
 License: GPL-3
 
 License: GPL-3
@@ -29,4 +40,3 @@ License: GPL-3
  On Debian systems, the full text of the GNU General Public
  License version 3 can be found in the file
  `/usr/share/common-licenses/GPL-3'.
-
