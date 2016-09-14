@@ -99,19 +99,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkSwitch" id="switch_automatic_location_detection">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="margin_top">2</property>
-                <signal name="activate" handler="on_switch_automatic_location_detection_activated" swapped="no"/>
-                <signal name="state-set" handler="on_switch_automatic_location_detection_activated" swapped="no"/>
-              </object>
-              <packing>
-                <property name="x">230</property>
-                <property name="y">35</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkLabel" id="label_auto_detect">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -134,22 +121,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkSpinButton" id="spin_latitude">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="width_chars">9</property>
-                <property name="progress_pulse_step">0</property>
-                <property name="input_purpose">digits</property>
-                <property name="adjustment">adjustment1</property>
-                <property name="climb_rate">0.01</property>
-                <property name="digits">6</property>
-              </object>
-              <packing>
-                <property name="x">158</property>
-                <property name="y">65</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkLabel" id="label_longitude">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -158,21 +129,6 @@
               <packing>
                 <property name="x">10</property>
                 <property name="y">105</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSpinButton" id="spin_longitude">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="width_chars">9</property>
-                <property name="progress_pulse_step">0</property>
-                <property name="input_purpose">digits</property>
-                <property name="adjustment">adjustment2</property>
-                <property name="digits">6</property>
-              </object>
-              <packing>
-                <property name="x">158</property>
-                <property name="y">100</property>
               </packing>
             </child>
             <child>
@@ -197,6 +153,39 @@
               <packing>
                 <property name="x">10</property>
                 <property name="y">205</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_hide_location">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Hide Location:</property>
+              </object>
+              <packing>
+                <property name="x">10</property>
+                <property name="y">135</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_round_temperature">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Round Temperature:</property>
+              </object>
+              <packing>
+                <property name="x">10</property>
+                <property name="y">238</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="switch_round_temperature">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="margin_top">2</property>
+              </object>
+              <packing>
+                <property name="x">230</property>
+                <property name="y">236</property>
               </packing>
             </child>
             <child>
@@ -233,36 +222,49 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label_hide_location">
+              <object class="GtkSpinButton" id="spin_longitude">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Hide Location:</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">9</property>
+                <property name="max_width_chars">0</property>
+                <property name="progress_pulse_step">0</property>
+                <property name="input_purpose">digits</property>
+                <property name="adjustment">adjustment2</property>
+                <property name="digits">6</property>
               </object>
               <packing>
-                <property name="x">10</property>
-                <property name="y">135</property>
+                <property name="x">158</property>
+                <property name="y">100</property>
               </packing>
             </child>
             <child>
-              <object class="GtkSwitch" id="switch_round_temperature">
+              <object class="GtkSpinButton" id="spin_latitude">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">9</property>
+                <property name="max_width_chars">0</property>
+                <property name="progress_pulse_step">0</property>
+                <property name="input_purpose">digits</property>
+                <property name="adjustment">adjustment1</property>
+                <property name="climb_rate">0.01</property>
+                <property name="digits">6</property>
+              </object>
+              <packing>
+                <property name="x">158</property>
+                <property name="y">65</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="switch_automatic_location_detection">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="margin_top">2</property>
+                <signal name="activate" handler="on_switch_automatic_location_detection_activated" swapped="no"/>
+                <signal name="state-set" handler="on_switch_automatic_location_detection_activated" swapped="no"/>
               </object>
               <packing>
                 <property name="x">230</property>
-                <property name="y">236</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label_round_temperature">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Round Temperature:</property>
-              </object>
-              <packing>
-                <property name="x">10</property>
-                <property name="y">238</property>
+                <property name="y">35</property>
               </packing>
             </child>
           </object>
