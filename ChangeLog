@@ -1,3 +1,14 @@
+indicator-weather (0.7ubuntu) trusty; urgency=low
+
+  * Add icon
+  * Application launcher
+  * Start-up preference
+  * Moved start-up preference to user space
+  * Adjust preference misalignment
+  * PPA repository
+
+ -- Kasra Madadipouya <kasra@madadipouya.com>  Sat, 17 Sep 2016 14:15:00 +0800
+
 indicator-weather (0.6) trusty; urgency=low
 
   * New Location detection API

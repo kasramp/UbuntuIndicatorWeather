@@ -2,4 +2,9 @@ indicator-weather usr/lib/ubuntu-indicator-weather
 configuration.py usr/lib/ubuntu-indicator-weather
 preference.py usr/lib/ubuntu-indicator-weather
 ui.glade usr/share/ubuntu-indicator-weather
-indicator-weather.desktop etc/xdg/autostart
+indicator-weather.desktop usr/share/applications
+icons/16x16/indicator-weather.png usr/share/icons/hicolor/16x16/apps
+icons/32x32/indicator-weather.png usr/share/icons/hicolor/32x32/apps
+icons/64x64/indicator-weather.png usr/share/icons/hicolor/64x64/apps
+icons/128x128/indicator-weather.png usr/share/icons/hicolor/128x128/apps
+icons/256x256/indicator-weather.png usr/share/icons/hicolor/256x256/apps
