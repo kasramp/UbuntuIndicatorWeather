@@ -10,8 +10,34 @@ The indicator has dependencies for Python >= 2.7 and requires some Python librar
 * Python urllib
 * Python json library
 
-## How to use
-You can use either .deb package from releases tab if you are using Ubuntu or Debian based distributions or .tar.gz for other distributions.
+## How to install
+### Via PPA (Ubuntu only version 0.7 and onwards)
+You can add PPA repository for easy installation and be notified on updates. Add the following repository to your machine like this:
+
+`$ sudo add-apt-repository ppa:kasra-mp/ubuntu-indicator-weather`
+
+`$ sudo apt-get update`
+
+
+To install the weather indicator run:
+
+`$ sudo apt-get install indicator-weather`
+
+#### Supported Ubuntu versions
+* Xenial Xerus 16.04 LTS
+* Wily Werewolf 15.10
+* Vivid Vervet 15.04
+* Trusty Tahr 14.04 LTS
+
+#### Supported architectures
+* i386
+* X64
+
+### Via .deb file
+If you want to use older versions (< 0.7) of the indicator or install it on other Debian based distributions, you can download .deb package(s) from release section ([link] (https://github.com/kasramp/UbuntuIndicatorWeather/releases)).
+
+### Via .tar.gz file
+For non-debian based distributions you can download .tar.gz files which consist of the source code of the indicator from release section ([link] (https://github.com/kasramp/UbuntuIndicatorWeather/releases)).
 
 ## Screenshot
 <p align="center">
