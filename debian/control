@@ -2,15 +2,16 @@ Source: indicator-weather
 Section: python
 Priority: optional
 Maintainer: Kasra Madadipouya, <kasra@madadipouya.com>
-Build-Depends: debhelper (>= 7)
-Standards-Version: 3.9.7
+XSBC-Original-Maintainer: Kasra Madadipouya <kasra@madadipouya.com>
+Build-Depends: debhelper (>= 7), python-all, python-dev, python-all-dev
+Standards-Version: 3.9.6
 X-Python-Version: >= 2.6
 Homepage: https://github.com/kasramp/UbuntuIndicatorWeather
 Vcs-Browser: https://github.com/kasramp/UbuntuIndicatorWeather.git
 
 Package: indicator-weather
 Architecture: all
-Depends: gir1.2-appindicator3-0.1 (>= 12.10.1~), python (>= 2.6.6-3~), python-gtk2
+Depends: gir1.2-appindicator3-0.1 (>= 12.10.1~), python (>= 2.6.6-3~), python-gtk2, ${shlibs:Depends}, ${misc:Depends}
 Description: Display weather temperature
  Indicator Weather is a simple indicator to get
  weather temperature automatically. It calls
