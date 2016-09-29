@@ -1,4 +1,4 @@
-indicator-weather (0.7ubuntu) UNRELEASED; urgency=low
+indicator-weather (0.7-0ubuntu1) UNRELEASED; urgency=low
 
   * Add missing dependency
 
