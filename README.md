@@ -41,7 +41,7 @@ For non-debian based distributions you can download .tar.gz files which consist 
 
 ## Screenshot
 <p align="center">
-<img src="http://blog.madadipouya.com/wp-content/uploads/2014/07/Screenshot-from-2015-12-25-14-08-10.png" alt="Drawing" height="26" width="148"/>
+<img src="http://blog.madadipouya.com/wp-content/uploads/2014/07/Screenshot-from-2015-12-25-14-08-10.png" alt="Simple Weather Indicator" height="26" width="148"/>
 </p>
 
 ## Contact
@@ -49,6 +49,10 @@ For non-debian based distributions you can download .tar.gz files which consist 
 * kasra_mp@live.com
 	
 ## License
+<p>
+<img src="https://www.gnu.org/graphics/gplv3-127x51.png" alt="License"/>
+</p>
+
 Indicator Weather is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 3
 as published by the Free Software Foundation.
