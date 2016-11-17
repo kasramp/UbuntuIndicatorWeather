@@ -1,8 +1,8 @@
-indicator-weather (0.7-0ubuntu1) UNRELEASED; urgency=low
+indicator-weather (0.8-0ubuntu1) trusty; urgency=low
 
   * Add missing dependency
 
- -- Kasra Madadipouya <kasra@madadipouya.com>  Wed, 28 Sep 2016 12:25:41 +0800
+ -- Kasra Madadipouya <kasra@madadipouya.com>  Thu, 17 Nov 2016 22:55:53 +0800
 
 indicator-weather (0.7ubuntu) trusty; urgency=low
 
