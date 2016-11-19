@@ -43,6 +43,7 @@ class Configuration:
     def __create_start_up_script_if_not_exist(self):
         if not os.path.exists(self.start_up_file_name):
             try:
+            	os.makedirs(os.path.dirname(self.start_up_file_name))
                 return self.__create_default_start_up_script_and_save_to_disk()
             except OSError as exc: # Guard against race condition
                 if exc.errno != errno.EEXIST:
