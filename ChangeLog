@@ -1,3 +1,16 @@
+indicator-weather (0.8-1ubuntu2) trusty; urgency=low
+
+  * Fixed icon inconsistency for different icon sets
+  * Fixed first time bootstrap failure
+
+ -- Kasra Madadipouya <kasra@madadipouya.com>  Sat, 19 Nov 2016 11:27:21 +0800
+
+indicator-weather (0.8-0ubuntu1) trusty; urgency=low
+
+  * Add missing dependency
+
+ -- Kasra Madadipouya <kasra@madadipouya.com>  Thu, 17 Nov 2016 22:55:53 +0800
+
 indicator-weather (0.7ubuntu) trusty; urgency=low
 
   * Add icon
