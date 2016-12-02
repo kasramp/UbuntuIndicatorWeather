@@ -1,3 +1,10 @@
+indicator-weather (0.8-2ubuntu3) trusty; urgency=low
+
+  * Fixed bug caused start-up failure
+  * Fixed preference saving failur
+
+ -- Kasra Madadipouya <kasra@madadipouya.com>  Fri, 2 Dec 2016 17:24:19 +0800
+
 indicator-weather (0.8-1ubuntu2) trusty; urgency=low
 
   * Fixed icon inconsistency for different icon sets
