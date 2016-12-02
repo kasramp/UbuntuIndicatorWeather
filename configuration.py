@@ -14,6 +14,7 @@
 import json
 import ast
 import os
+import errno
 from os.path import expanduser
 try:
     from configparser import ConfigParser
@@ -46,6 +47,8 @@ class Configuration:
             	os.makedirs(os.path.dirname(self.start_up_file_name))
                 return self.__create_default_start_up_script_and_save_to_disk()
             except OSError as exc: # Guard against race condition
+                if exc.errno == errno.EEXIST:
+                    return self.__create_default_start_up_script_and_save_to_disk()
                 if exc.errno != errno.EEXIST:
                     raise
         else:
