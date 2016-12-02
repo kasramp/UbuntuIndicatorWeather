@@ -1,3 +1,9 @@
+indicator-weather (0.8-2ubuntu3) trusty; urgency=low
+
+  * Prepare 0.8.2 release from upstream
+
+ -- Kasra Madadipouya <kasra@madadipouya.com>  Fri, 2 Dec 2016 17:24:19 +0800
+
 indicator-weather (0.8-1ubuntu2) trusty; urgency=low
 
   * Prepare 0.8.1 release from upstream
