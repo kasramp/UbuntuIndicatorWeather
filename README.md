@@ -40,6 +40,9 @@ If you want to use older versions (< 0.7) of the indicator or install it on othe
 ### Via .tar.gz file
 For non-debian based distributions you can download .tar.gz files which consist of the source code of the indicator from release section ([link] (https://github.com/kasramp/UbuntuIndicatorWeather/releases)).
 
+## Website
+For more information please refer to [Simple Weather Indicator](http://simpleweatherindicator.madadipouya.com/) website.
+
 ## Screenshot
 <p align="center">
 <img src="http://blog.madadipouya.com/wp-content/uploads/2014/07/Screenshot-from-2015-12-25-14-08-10.png" alt="Simple Weather Indicator" height="26" width="148"/>
