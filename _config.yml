@@ -1,0 +1,96 @@
+# Site configuration
+# 1. Files excluded from Jekyll builds
+# 2. Installed Gems
+# 3. Gem settings
+# 4. Jekyll settings
+# 5. Collections
+# 6. Jekyll collections settings
+# 7. Site settings
+# 8. Site navigation
+
+# 1. Files excluded from Jekyll builds
+exclude:
+- README.md
+- screenshot.png
+- LICENSE
+- CNAME
+- Gemfile
+- Gemfile.lock
+- demo/*
+- alembic-jekyll-theme.gemspec
+
+# 2. Installed Gems
+gems:
+- jekyll-sitemap
+- jekyll-mentions
+- jekyll-paginate
+- jekyll-seo-tag
+- jekyll-redirect-from
+- jekyll-feed
+- jemoji
+
+# 3. Gem settings
+paginate: 2 # jekyll-paginate > items per page
+paginate_path: blog/page:num # jekyll-paginate > blog page
+jekyll-mentions: https://twitter.com # jekyll-mentions > service used when @replying
+twitter:
+  username: kasra_mp # jekyll-seo-tag > Owners twitter username
+author: Kasra Madadipouya # jekyll-seo-tag > default author
+social: # jekyll-seo-tag > social overrides
+  name: Kasra Madadipouya # jekyll-seo-tag > real name
+# 4. Jekyll settings
+sass:
+  style: compressed # Style compression
+permalink: pretty  # Permalink style (/YYYY/MM/DD/page-name/)
+excerpt_separator: <!-- more --> # Marks end of excerpt in posts
+timezone: Europe/London # Timezone for blog posts and alike
+
+# 5. Collections
+collections:
+  posts:
+    title: Posts # Needed for Siteleaf
+    output: true
+    description: "Announcements" # The post list page content
+    feature_image: "https://unsplash.it/1300/400?image=1067"  #Header page
+
+# 6. Jekyll collections settings
+defaults:
+  -
+    scope:
+      path: ""
+      type: pages
+    values:
+      layout: page # Default layout
+      image: "/assets/placeholder-social.png" # Default image for sharing
+  -
+    scope:
+      path: ""
+      type: posts
+    values:
+      layout: post # Default layout
+      image: "/assets/placeholder-social.png" # Default image for sharing
+
+# 7. Site settings
+encoding: utf-8 # Make sure the encoding is right
+title: "Simple Weather Indicator" # Site name or title, also used in jekyll-seo-tag
+logo: "/assets/placeholder-logo.svg" # Site logo, also used in jekyll-seo-tag
+url: "http://simpleweatherindicator.madadipouya.com" # Site url, also used in jekyll-seo-tag
+repo: "https://github.com/kasramp/UbuntuIndicatorWeather"
+email: "kasra@madadipouya.com"
+avatarurl: "https://raw.githubusercontent.com/kasramp/UbuntuIndicatorWeather/master/icons/64x64/indicator-weather.png" # Uses avatars for favicons to get multple sites, eg Gravatar, Twitter, GitHub
+
+# 8. Site navigation
+navigation_header:
+  Home: /
+  Installation: /installation
+  Announcements: /blog/
+  Releases: https://github.com/kasramp/UbuntuIndicatorWeather/releases
+  Found a bug?: https://github.com/kasramp/UbuntuIndicatorWeather/issues
+  Contributers: https://github.com/kasramp/UbuntuIndicatorWeather/graphs/contributors
+  License: https://github.com/kasramp/UbuntuIndicatorWeather/blob/master/LICENSE
+  Fork Me: https://github.com/kasramp/UbuntuIndicatorWeather
+  
+
+
+navigation_footer:
+  Created by Kasra Madadipouya: http://blog.madadipouya.com
