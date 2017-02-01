@@ -1,3 +1,12 @@
+indicator-weather (0.9-0ubuntu4) trusty; urgency=low
+
+  * Moved to Eris API
+  * Added more metrics
+  * Updated copyright file
+  * Prepare 0.9.0 release from upstream
+
+ -- Kasra Madadipouya <kasra@madadipouya.com>  Wed, 1 Feb 2017 13:47:06 +0800
+
 indicator-weather (0.8-2ubuntu3) trusty; urgency=low
 
   * Prepare 0.8.2 release from upstream

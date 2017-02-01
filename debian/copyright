@@ -1,9 +1,9 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Indicator Weather
-Source: http://blog.madadipouya.com
+Source: http://simpleweatherindicator.madadipouya.com/
 
 Files: *
-Copyright: 2015-2016 Kasra Madadipouya <kasra@madadipouya.com>
+Copyright: 2015-2017 Kasra Madadipouya <kasra@madadipouya.com>
 License: GPL-3
 
 Files: debian/source/format
@@ -12,13 +12,13 @@ Files: debian/source/format
        debian/copyright
        ChangeLog
        indicator-weather
-Copyright: 2015-2016 Kasra Madadipouya <kasra@madadipouya.com>
-                2016 Anthony Samartsev <ant.samarcev@gmail.com>
+Copyright: 2015-2017 Kasra Madadipouya <kasra@madadipouya.com>
+           2016-2017 Anthony Samartsev <ant.samarcev@gmail.com>
 License: GPL-3
 
 Files: indicator-weather.desktop
-Copyright: 2015-2016 Kasra Madadipouya <kasra@madadipouya.com>
-                2016 ALJI Mohamed <mr.m.alji@gmail.com>
+Copyright: 2015-2017 Kasra Madadipouya <kasra@madadipouya.com>
+           2016-2017 ALJI Mohamed <mr.m.alji@gmail.com>
 License: GPL-3
 
 License: GPL-3
