@@ -20,6 +20,14 @@ Simple Weather Indicator is an elegant and very simple weather indicator for Ubu
 	- Enable/disable indicator startup
 	- Temperature scale suppert (Celsius, Fahrenheit)
 	- Rounding weather temperature
+- Feature-rich
+    - Overall weather condition
+    - Humdity level
+    - Wind speed
+    - Weather cloudiness
+    - Weather pressure
+    - Weather visibility
+
 - Small footprint
 - Available through PPA
 - Free and public API ([Eris Weather API](http://eris.madadipouya.com/))
