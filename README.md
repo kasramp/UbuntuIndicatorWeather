@@ -24,9 +24,10 @@ To install the weather indicator run:
 `$ sudo apt-get install indicator-weather`
 
 #### Supported Ubuntu versions
+* Zesty Zapus 17.04
 * Yakkety Yak 16.10
 * Xenial Xerus 16.04 LTS
-* Wily Werewolf 15.10
+* Wily Werewolf 15.10 (Until version 0.8.2)
 * Vivid Vervet 15.04
 * Trusty Tahr 14.04 LTS
 
