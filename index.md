@@ -9,7 +9,7 @@ image: "https://unsplash.it/600/400?image=971"
 
 Simple Weather Indicator is an elegant and very simple weather indicator for Ubuntu unity and Gnome 3. It is developed with Python and uses an in-house free/open source Weather API called [Eris](http://eris.madadipouya.com/) to get the current weather condition of the user's location.
 
-{% include button.html text="Fork on GitHub" icon="github" link="https://github.com/kasramp/UbuntuIndicatorWeather" %} {% include button.html text="Install Alembic" link="https://github.com/daviddarnes/alembic#installation" %}
+{% include button.html text="Fork on GitHub" icon="github" link="https://github.com/kasramp/UbuntuIndicatorWeather" %}
 
 ## Features
 
