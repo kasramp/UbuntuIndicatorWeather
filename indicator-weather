@@ -67,6 +67,33 @@ class WeatherIndicator:
         self.temperature_item = Gtk.MenuItem("")
         self.temperature_item.show()
         self.menu.append(self.temperature_item)
+        self.menu.append(self.create_separator_menu_item())
+        # Weather Condition
+        self.weather_condition_item = Gtk.MenuItem("")
+        self.weather_condition_item.show()
+        self.menu.append(self.weather_condition_item)
+        # Humidity
+        self.humidity_item = Gtk.MenuItem("")
+        self.humidity_item.show()
+        self.menu.append(self.humidity_item)
+        # Wind
+        self.wind_item = Gtk.MenuItem("")
+        self.wind_item.show()
+        self.menu.append(self.wind_item)
+        # Cloudiness
+        self.cloudiness_item = Gtk.MenuItem("")
+        self.cloudiness_item.show()
+        self.menu.append(self.cloudiness_item)
+        # Pressure
+        self.pressure_item = Gtk.MenuItem("")
+        self.pressure_item.show()
+        self.menu.append(self.pressure_item)
+        # Visibility
+        self.visibility_item = Gtk.MenuItem("")
+        self.visibility_item.show()
+        self.menu.append(self.visibility_item)
+
+        self.menu.append(self.create_separator_menu_item())
         self.preference_item = Gtk.MenuItem("Preferences")
         self.preference_item.connect("activate", self.preference)
         self.preference_item.show()
@@ -90,6 +117,12 @@ class WeatherIndicator:
         preference_dialog.main()
         self.configuration.reload_configuration()
         self.get_weather()
+
+    def create_separator_menu_item(self):
+        separator = Gtk.SeparatorMenuItem()
+        separator.show()
+        return separator
+
 
 
     def get_weather(self):
@@ -123,9 +156,35 @@ class WeatherIndicator:
             self.indicator.set_label(label, label)
             self.indicator.set_icon(icon_name)
             self.temperature_item.get_child().set_text(label)
+            self.set_weather_metrics(json_response)
 
         finally:
             return True # Make sure timer loop continues
+
+    def set_weather_metrics(self, json_response):
+        self.weather_condition_item.set_label(json_response['weather'][0]['main'])
+        humidity = 'Humidity: {}%'.format(json_response['main']['humidity'])
+        self.humidity_item.set_label(humidity)
+        if(self.configuration.get_temperature_scale()):
+            print self.configuration.get_temperature_scale()
+            wind_speed = json_response['wind']['speed']
+            wind_speed_unit = "mph"
+        else:
+            print self.configuration.get_temperature_scale()
+            wind_speed = self.convert_to_km_h(json_response['wind']['speed'])
+            print json_response['wind']['speed']
+            wind_speed_unit = "km/h"
+        wind  = 'Wind: {wind_speed} {wind_speed_unit}'.format(**locals())
+        self.wind_item.set_label(wind)
+        cloudiness = 'Cloudiness: {}%'.format(json_response['clouds']['all'])
+        self.cloudiness_item.set_label(cloudiness)
+        pressure = "Pressure: {} hPa".format(json_response['main']['pressure'])
+        self.pressure_item.set_label(pressure)
+        visibility = "Visibility: {} meter".format(json_response['visibility'])
+        self.visibility_item.set_label(visibility)
+        
+    def convert_to_km_h(self, wind_speed):
+        return wind_speed * 18 / 5
 
     def get_city_name(self, location):
         try:    # If location[0] is number, then we will show location[1], which is street
