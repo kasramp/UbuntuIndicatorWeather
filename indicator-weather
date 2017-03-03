@@ -167,13 +167,10 @@ class WeatherIndicator:
         humidity = 'Humidity: {}%'.format(json_response['main']['humidity'])
         self.humidity_item.set_label(humidity)
         if(self.configuration.get_temperature_scale()):
-            print self.configuration.get_temperature_scale()
             wind_speed = json_response['wind']['speed']
             wind_speed_unit = "mph"
         else:
-            print self.configuration.get_temperature_scale()
             wind_speed = self.convert_to_km_h(json_response['wind']['speed'])
-            print json_response['wind']['speed']
             wind_speed_unit = "km/h"
         wind  = 'Wind: {wind_speed} {wind_speed_unit}'.format(**locals())
         self.wind_item.set_label(wind)
