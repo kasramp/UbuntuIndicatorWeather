@@ -40,6 +40,10 @@ If you are using any Debian based distribution except Ubuntu, you can download `
 
 `$ sudo dpkg -i indicator-weather_Version_all.deb`
 
+### Via AUR (Arch Linux)
+For Arch Linux, Simple Weather Indicator is available on the Arch User Repository, under the package name ubuntu-indicator-weather via this link:
+[https://aur.archlinux.org/packages/ubuntu-indicator-weather/](https://aur.archlinux.org/packages/ubuntu-indicator-weather/)
+
 ### Via source code
 At the moment other Linux distributions users have to rely on source code to use this indicator. To do that, download `.tar.gz` package of your desired version from releases section and uncompress it to any desire location. 
 
