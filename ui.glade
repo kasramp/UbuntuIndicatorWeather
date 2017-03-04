@@ -24,7 +24,7 @@
         <col id="0">Celsius (°C)</col>
       </row>
       <row>
-        <col id="0">Fahrenheit  (°F)</col>
+        <col id="0">Fahrenheit (°F)</col>
       </row>
     </data>
   </object>
@@ -35,10 +35,10 @@
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">Miles(mph)</col>
+        <col id="0" translatable="yes">Kilos (kmh)</col>
       </row>
       <row>
-        <col id="0" translatable="yes">Kilos(kmh)</col>
+        <col id="0" translatable="yes">Miles (mph)</col>
       </row>
     </data>
   </object>
@@ -109,7 +109,7 @@
               <object class="GtkLabel" id="label_temperature">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Temperature</property>
+                <property name="label" translatable="yes">Temperature &amp; Wind</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
                 </attributes>
@@ -148,7 +148,7 @@
               </object>
               <packing>
                 <property name="x">10</property>
-                <property name="y">238</property>
+                <property name="y">280</property>
               </packing>
             </child>
             <child>
@@ -159,7 +159,7 @@
               </object>
               <packing>
                 <property name="x">230</property>
-                <property name="y">236</property>
+                <property name="y">278</property>
               </packing>
             </child>
             <child>
@@ -291,7 +291,7 @@
               </object>
               <packing>
                 <property name="x">10</property>
-                <property name="y">273</property>
+                <property name="y">238</property>
               </packing>
             </child>
             <child>
@@ -313,7 +313,7 @@
               </object>
               <packing>
                 <property name="x">152</property>
-                <property name="y">270</property>
+                <property name="y">240</property>
               </packing>
             </child>
           </object>

@@ -119,6 +119,9 @@ class Configuration:
         if Parameter.ROUND_TEMPERATURE not in self.json_configuration:
             self.json_configuration[Parameter.ROUND_TEMPERATURE] = 'False'
             self.save_reload_configuration()
+        if Parameter.WIND_SCALE not in self.json_configuration:
+            self.json_configuration[Parameter.WIND_SCALE] = '0'
+            self.save_reload_configuration()
 
     def get_temperature_scale(self):
         return int(self.json_configuration[Parameter.TEMPERATURE_SCALE])
