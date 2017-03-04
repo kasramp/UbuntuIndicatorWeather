@@ -29,8 +29,9 @@ class Dialog:
         self.load_user_preferences_to_ui()
 
     def load_user_preferences_to_ui(self):
-        combo_temperature_scale, switch_automatic_location_detection, latitude, longitude, switch_hide_location, switch_round_temperature, switch_autostart = self.get_ui_objects()
+        combo_temperature_scale, combo_wind_scale, switch_automatic_location_detection, latitude, longitude, switch_hide_location, switch_round_temperature, switch_autostart = self.get_ui_objects()
         combo_temperature_scale.set_active(self.configuration.get_temperature_scale())
+        combo_wind_scale.set_active(self.configuration.get_wind_scale())
         switch_automatic_location_detection.set_state(self.configuration.get_automatic_location_detection())
         latitude.set_sensitive(not switch_automatic_location_detection.get_state())
         longitude.set_sensitive(not switch_automatic_location_detection.get_state())
@@ -42,21 +43,23 @@ class Dialog:
     
     def get_ui_objects(self):
         combo_temperature_scale = self.builder.get_object('combo_temperature_scale')
+        combo_wind_scale = self.builder.get_object('combo_wind_scale')
         switch_automatic_location_detection = self.builder.get_object('switch_automatic_location_detection')
         latitude = self.builder.get_object('spin_latitude')
         longitude = self.builder.get_object('spin_longitude')
         switch_hide_location = self.builder.get_object('switch_hide_location')
         switch_round_temperature = self.builder.get_object('switch_round_temperature')
         switch_autostart = self.builder.get_object('switch_autostart')
-        return combo_temperature_scale, switch_automatic_location_detection, latitude, longitude, switch_hide_location, switch_round_temperature, switch_autostart
+        return combo_temperature_scale, combo_wind_scale, switch_automatic_location_detection, latitude, longitude, switch_hide_location, switch_round_temperature, switch_autostart
 
     def on_cancel_button_clicked(self, widget, data=None):
         self.window.destroy()
         Gtk.main_quit()
 
     def on_ok_button_clicked(self, widget, data=None):
-        combo_temperature_scale, switch_automatic_location_detection, latitude, longitude, switch_hide_location, switch_round_temperature, switch_autostart = self.get_ui_objects()
+        combo_temperature_scale, combo_wind_scale, switch_automatic_location_detection, latitude, longitude, switch_hide_location, switch_round_temperature, switch_autostart = self.get_ui_objects()
         self.configuration.set_temperature_scale(combo_temperature_scale.get_active())
+        self.configuration.set_wind_scale(combo_wind_scale.get_active())
         self.configuration.set_automatic_location_detection(str(switch_automatic_location_detection.get_active()).title())
         self.configuration.set_latitude(latitude.get_value())
         self.configuration.set_longitude(longitude.get_value())
