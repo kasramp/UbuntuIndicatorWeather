@@ -21,6 +21,7 @@ import sys
 import urllib
 import json
 import gi
+import string
 from preference import Dialog
 from configuration import Configuration
 from gi.repository import Gtk, GLib
@@ -69,10 +70,10 @@ class WeatherIndicator:
         self.temperature_item.show()
         self.menu.append(self.temperature_item)
         self.menu.append(self.create_separator_menu_item())
-        # Weather Condition
-        self.weather_condition_item = Gtk.MenuItem("")
-        self.weather_condition_item.show()
-        self.menu.append(self.weather_condition_item)
+        # Weather Description
+        self.weather_description_item = Gtk.MenuItem("")
+        self.weather_description_item.show()
+        self.menu.append(self.weather_description_item)
         # Humidity
         self.humidity_item = Gtk.MenuItem("")
         self.humidity_item.show()
@@ -156,14 +157,14 @@ class WeatherIndicator:
                 label = u'{temperature}{temperature_symbol} {city}'.format(**locals())
             self.indicator.set_label(label, label)
             self.indicator.set_icon(icon_name)
-            self.temperature_item.get_child().set_text(label)
+            self.temperature_item.get_child().set_text(u'{temperature}{temperature_symbol} {city}'.format(**locals()))
             self.set_weather_metrics(json_response)
 
         finally:
             return True # Make sure timer loop continues
 
     def set_weather_metrics(self, json_response):
-        self.weather_condition_item.set_label(json_response['weather'][0]['main'])
+        self.weather_description_item.set_label(string.capwords(json_response['weather'][0]['description']))
         humidity = 'Humidity: {}%'.format(json_response['main']['humidity'])
         self.humidity_item.set_label(humidity)
         if(self.configuration.get_wind_scale()):
