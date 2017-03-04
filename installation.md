@@ -8,6 +8,7 @@ image: "https://unsplash.it/1300/400?image=970"
 There are three installation methods exist which are:
 - Via PPA
 - Via Debian package file
+- Via AUR (Arch Linux)
 - Via source code
 
 ### Via PPA (Ubuntu only version 0.7 and onwards)
