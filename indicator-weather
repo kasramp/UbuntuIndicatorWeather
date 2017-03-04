@@ -156,7 +156,7 @@ class WeatherIndicator:
                 label = u'{temperature}{temperature_symbol} {city}'.format(**locals())
             self.indicator.set_label(label, label)
             self.indicator.set_icon(icon_name)
-            self.temperature_item.get_child().set_text(label)
+            self.temperature_item.get_child().set_text(u'{temperature}{temperature_symbol} {city}'.format(**locals()))
             self.set_weather_metrics(json_response)
 
         finally:
