@@ -167,7 +167,7 @@ class WeatherIndicator:
         self.weather_description_item.set_label(string.capwords(json_response['weather'][0]['description']))
         humidity = 'Humidity: {}%'.format(json_response['main']['humidity'])
         self.humidity_item.set_label(humidity)
-        if(self.configuration.get_temperature_scale()):
+        if(self.configuration.get_wind_scale()):
             wind_speed = json_response['wind']['speed']
             wind_speed_unit = "mph"
         else:
