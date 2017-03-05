@@ -74,6 +74,14 @@ class WeatherIndicator:
         self.weather_description_item = Gtk.MenuItem("")
         self.weather_description_item.show()
         self.menu.append(self.weather_description_item)
+        # Maximum temperature
+        self.maximum_temperature_item = Gtk.MenuItem("")
+        self.maximum_temperature_item.show()
+        self.menu.append(self.maximum_temperature_item)
+        # Minimum temperature
+        self.minimum_temperature_item = Gtk.MenuItem("")
+        self.minimum_temperature_item.show()
+        self.menu.append(self.minimum_temperature_item)
         # Humidity
         self.humidity_item = Gtk.MenuItem("")
         self.humidity_item.show()
@@ -158,13 +166,22 @@ class WeatherIndicator:
             self.indicator.set_label(label, label)
             self.indicator.set_icon(icon_name)
             self.temperature_item.get_child().set_text(u'{temperature}{temperature_symbol} {city}'.format(**locals()))
-            self.set_weather_metrics(json_response)
+            self.set_weather_metrics(json_response, temperature_symbol)
 
         finally:
             return True # Make sure timer loop continues
 
-    def set_weather_metrics(self, json_response):
+    def set_weather_metrics(self, json_response, temperature_symbol):
         self.weather_description_item.set_label(string.capwords(json_response['weather'][0]['description']))
+        maximum_temperature = json_response['main']['temp_max']
+        minimum_temperature = json_response['main']['temp_min']
+        if(self.configuration.is_round_temperature()):
+            maximum_temperature = int(round(float(maximum_temperature)))
+            minimum_temperature = int(round(float(minimum_temperature)))
+        maximum_temperature = u'Maximum: {maximum_temperature}{temperature_symbol}'.format(**locals())
+        minimum_temperature = u'Minimum: {minimum_temperature}{temperature_symbol}'.format(**locals())
+        self.maximum_temperature_item.set_label(maximum_temperature)
+        self.minimum_temperature_item.set_label(minimum_temperature)
         humidity = 'Humidity: {}%'.format(json_response['main']['humidity'])
         self.humidity_item.set_label(humidity)
         if(self.configuration.get_wind_scale()):
