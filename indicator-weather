@@ -27,6 +27,8 @@ from configuration import Configuration
 from gi.repository import Gtk, GLib
 gi.require_version('Gtk', '3.0')
 gi.require_version('AppIndicator3', '0.1')
+gi.require_version('Notify', '0.7')
+from gi.repository import Notify as notification
 from gi.repository import AppIndicator3 as appIndicator
 
 PING_FREQUENCY_IN_SECONDS = 600 # 10 minutes
@@ -133,7 +135,10 @@ class WeatherIndicator:
         separator.show()
         return separator
 
-
+    def user_notification(self,json_response,icon):
+        description=string.capwords(json_response['weather'][0]['description'])
+        notification.init("Current Weather Notification")
+        notification.Notification.new("Current Weather Notification","<br>Current Weather Description: {}</br>".format(description),"{}".format(icon)).show()
 
     def get_weather(self):
         try:
@@ -167,6 +172,7 @@ class WeatherIndicator:
             self.indicator.set_icon(icon_name)
             self.temperature_item.get_child().set_text(u'{temperature}{temperature_symbol} {city}'.format(**locals()))
             self.set_weather_metrics(json_response, temperature_symbol)
+            self.user_notification(json_response,icon_name)
 
         finally:
             return True # Make sure timer loop continues
