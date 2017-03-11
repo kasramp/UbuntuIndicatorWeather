@@ -48,10 +48,6 @@ For Arch Linux, Simple Weather Indicator is available on the Arch User Repositor
 ### Via source code
 At the moment other Linux distributions users have to rely on source code to use this indicator. To do that, download `.tar.gz` package of your desired version from releases section and uncompress it to any desire location. 
 
-After that run the installation script with root permission:
-
-`sudo ./install.sh`
-
 Before proceeding to the next step make sure that you have the following packages installed on your system.
 - Python >= 2.7
 - Python gtk library
@@ -59,8 +55,12 @@ Before proceeding to the next step make sure that you have the following package
 - Python urllib
 - Python json library
 
+After that run the installation script with root permission,
+
+`sudo ./install.sh`
+
 The last step is to run the indicator using the following command,
 
-`./indicator-weather`
+`indicator-weather`
 
 To make the indicator to start automatically on system startup, depends on your desktop/window manager, you need to add `indicator-weather` file to the startup script.
