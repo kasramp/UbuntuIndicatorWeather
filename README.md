@@ -43,7 +43,9 @@ For Arch Linux, UbuntuIndicatorWeather is available on the Arch User Repository,
 
 ### Via .tar.gz file
 For non-debian based distributions you can download .tar.gz files which consist of the source code of the indicator from release section ([link] (https://github.com/kasramp/UbuntuIndicatorWeather/releases)). 
+
 Extract the content of the compressed file and run installation file with root permission.
+
 `$ sudo ./install.sh`
 
 ## Website
