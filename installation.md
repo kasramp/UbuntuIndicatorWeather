@@ -48,6 +48,10 @@ For Arch Linux, Simple Weather Indicator is available on the Arch User Repositor
 ### Via source code
 At the moment other Linux distributions users have to rely on source code to use this indicator. To do that, download `.tar.gz` package of your desired version from releases section and uncompress it to any desire location. 
 
+After that run the installation script with root permission:
+
+`sudo ./install.sh`
+
 Before proceeding to the next step make sure that you have the following packages installed on your system.
 - Python >= 2.7
 - Python gtk library

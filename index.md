@@ -29,7 +29,8 @@ Simple Weather Indicator is an elegant and very simple weather indicator for Ubu
     - Weather visibility
 
 - Small footprint
-- Available through PPA
+- Available through PPA for Ubuntu users
+- Available through AUR for Arch users
 - Free and public API ([Eris Weather API](http://eris.madadipouya.com/))
 - GPL v3.0 licensed
 
