@@ -136,9 +136,13 @@ class WeatherIndicator:
         return separator
 
     def user_notification(self,json_response,icon):
-        description=string.capwords(json_response['weather'][0]['description'])
-        notification.init("Current Weather Notification")
-        notification.Notification.new("Current Weather Notification","<br>Current Weather Description: {}</br>".format(description),"{}".format(icon)).show()
+        last_description=self.weather_description_item.get_label()
+        actual_description=string.capwords(json_response['weather'][0]['description'])
+        if actual_description!=last_description:
+            notification.init("Actual Weather Notification")
+            notification.Notification.new("Actual Weather Notification","<br>Current Weather Description: {}</br>".format(description),"{}".format(icon)).show()
+        else:
+            pass
 
     def get_weather(self):
         try:
@@ -171,8 +175,8 @@ class WeatherIndicator:
             self.indicator.set_label(label, label)
             self.indicator.set_icon(icon_name)
             self.temperature_item.get_child().set_text(u'{temperature}{temperature_symbol} {city}'.format(**locals()))
-            self.set_weather_metrics(json_response, temperature_symbol)
             self.user_notification(json_response,icon_name)
+            self.set_weather_metrics(json_response, temperature_symbol)
 
         finally:
             return True # Make sure timer loop continues
