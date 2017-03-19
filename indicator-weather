@@ -120,7 +120,6 @@ class WeatherIndicator:
         notification.init("Simple Weather Indicator")
         self.weather_notification = notification.Notification.new("")
 
-
     def main(self):
         self.get_weather()
         GLib.timeout_add_seconds(PING_FREQUENCY_IN_SECONDS, self.get_weather)
