@@ -129,6 +129,12 @@ class Configuration:
     def set_temperature_scale(self, value):
         self.json_configuration[Parameter.TEMPERATURE_SCALE] = int(value)
 
+    def get_temperature_symbol(self):
+        if self.get_temperature_scale():
+            return u'\u2109' 
+        else:
+            return u'\u2103'
+
     def get_wind_scale(self):
         return int(self.json_configuration[Parameter.WIND_SCALE])
 

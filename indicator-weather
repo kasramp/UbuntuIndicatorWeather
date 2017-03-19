@@ -27,6 +27,8 @@ from configuration import Configuration
 from gi.repository import Gtk, GLib
 gi.require_version('Gtk', '3.0')
 gi.require_version('AppIndicator3', '0.1')
+gi.require_version('Notify', '0.7')
+from gi.repository import Notify as notification
 from gi.repository import AppIndicator3 as appIndicator
 
 PING_FREQUENCY_IN_SECONDS = 600 # 10 minutes
@@ -63,6 +65,7 @@ class WeatherIndicator:
         self.indicator.set_icon("weather-clear")
         self.menu_setup()
         self.indicator.set_menu(self.menu)
+        self.init_weather_notification()
 
     def menu_setup(self):
         self.menu = Gtk.Menu()
@@ -113,6 +116,11 @@ class WeatherIndicator:
         self.quit_item.show()
         self.menu.append(self.quit_item)
     
+    def init_weather_notification(self):
+        notification.init("Simple Weather Indicator")
+        self.weather_notification = notification.Notification.new("")
+
+
     def main(self):
         self.get_weather()
         GLib.timeout_add_seconds(PING_FREQUENCY_IN_SECONDS, self.get_weather)
@@ -133,16 +141,12 @@ class WeatherIndicator:
         separator.show()
         return separator
 
-
-
     def get_weather(self):
         try:
             if(self.configuration.get_temperature_scale()):
                 temperature_scale = 'true'
-                temperature_symbol = u'\u2109'
             else:
                 temperature_scale = 'false'
-                temperature_symbol = u'\u2103'
 
             if(self.configuration.is_automatic_location_detection()):
                 url_path = ('currentbyip?fahrenheit={}'.format(temperature_scale))
@@ -152,32 +156,49 @@ class WeatherIndicator:
                 
             weather_service_url = ('http://weather-api.madadipouya.com/v1/weather/{}'.format(url_path))
             json_response = json.loads(urllib.urlopen(weather_service_url).read())
-            temperature = json_response['temperature']
-            if(self.configuration.is_round_temperature()):
-                temperature = int(round(float(temperature)))
-            location = json_response['geoLocation']
-            icon_code = json_response['iconName']
-            icon_name = get_local_icon_name(icon_code)
-            city = self.get_city_name(location.strip().rsplit(",")[:2])
-            if(self.configuration.is_hide_location()):
-                label = u'{temperature}{temperature_symbol}'.format(**locals())
-            else:
-                label = u'{temperature}{temperature_symbol} {city}'.format(**locals())
-            self.indicator.set_label(label, label)
-            self.indicator.set_icon(icon_name)
-            self.temperature_item.get_child().set_text(u'{temperature}{temperature_symbol} {city}'.format(**locals()))
-            self.set_weather_metrics(json_response, temperature_symbol)
-
+            if self.is_weather_changed(json_response):
+                self.notify_user_on_weather_changes(json_response)
+            self.set_weather_metrics(json_response)
         finally:
             return True # Make sure timer loop continues
 
-    def set_weather_metrics(self, json_response, temperature_symbol):
-        self.weather_description_item.set_label(string.capwords(json_response['weather'][0]['description']))
+    def is_weather_changed(self, weather_json):
+        last_weather_description = self.weather_description_item.get_label()
+        last_location = self.temperature_item.get_label()
+        if self.is_not_blank(last_weather_description) and self.is_not_blank(last_location):
+            last_location = last_location.split(' ', 1)[1]
+            current_weather_description = string.capwords(weather_json['weather'][0]['description'])
+            current_location = self.get_city_name(weather_json['geoLocation'].strip().rsplit(",")[:2])
+            return last_weather_description != current_weather_description or unicode(last_location) != unicode(current_location)
+        return False
+
+    def notify_user_on_weather_changes(self, weather_json):
+        icon = get_local_icon_name(weather_json['iconName'])
+        weather_description = string.capwords(weather_json['weather'][0]['description'])
+        self.weather_notification.update("Recent Weather Changes", weather_description, icon)
+        self.weather_notification.show()
+               
+    def is_not_blank(self, string):
+        return bool(string and string.strip())
+
+    def set_weather_metrics(self, json_response):    
+        temperature = json_response['temperature']
         maximum_temperature = json_response['main']['temp_max']
         minimum_temperature = json_response['main']['temp_min']
+        temperature_symbol = self.configuration.get_temperature_symbol()
         if(self.configuration.is_round_temperature()):
+            temperature = int(round(float(temperature)))
             maximum_temperature = int(round(float(maximum_temperature)))
             minimum_temperature = int(round(float(minimum_temperature)))
+        city = self.get_city_name(json_response['geoLocation'].strip().rsplit(",")[:2])
+        if(self.configuration.is_hide_location()):
+            label = u'{temperature}{temperature_symbol}'.format(**locals())
+        else:
+            label = u'{temperature}{temperature_symbol} {city}'.format(**locals())
+        self.indicator.set_label(label, label)
+        self.indicator.set_icon(get_local_icon_name(json_response['iconName']))
+        self.temperature_item.get_child().set_text(u'{temperature}{temperature_symbol} {city}'.format(**locals()))
+        self.weather_description_item.set_label(string.capwords(json_response['weather'][0]['description']))        
         maximum_temperature = u'Maximum: {maximum_temperature}{temperature_symbol}'.format(**locals())
         minimum_temperature = u'Minimum: {minimum_temperature}{temperature_symbol}'.format(**locals())
         self.maximum_temperature_item.set_label(maximum_temperature)
