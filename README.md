@@ -7,6 +7,7 @@ The indicator has dependencies for Python >= 2.7 and requires some Python librar
 * Python >= 2.7
 * Python gtk library
 * Gir1.2-appindicator3-0.1
+* Gir1.2-notify-0.7
 * Python urllib
 * Python json library
 
