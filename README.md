@@ -1,6 +1,6 @@
 # UbuntuIndicatorWeather
 ## Description
-UbuntuIndicatorWeather is a very simple weather indicator for Ubuntu unity and Gnome 3. It is developed with Python and uses two web service calls [Ip-api.com](http://ip-api.com/), [Weather-api.madadipouya.com] (http://weather-api.madadipouya.com/) (based on [Open Weather Map](http://api.openweathermap.org/)) to detect user's location and temperature respectively. 
+UbuntuIndicatorWeather is a very simple weather indicator for Ubuntu unity and Gnome 3. It is developed with Python and uses two web service calls [Ip-api.com](http://ip-api.com/), [Weather-api.madadipouya.com](http://weather-api.madadipouya.com/) (based on [Open Weather Map](http://api.openweathermap.org/)) to detect user's location and temperature respectively. 
 
 ## Dependencies
 The indicator has dependencies for Python >= 2.7 and requires some Python libraries which are listed below
@@ -37,13 +37,13 @@ To install the weather indicator run:
 * X64
 
 ### Via .deb file
-If you want to use older versions (< 0.7) of the indicator or install it on other Debian based distributions, you can download .deb package(s) from release section ([link] (https://github.com/kasramp/UbuntuIndicatorWeather/releases)).
+If you want to use older versions (< 0.7) of the indicator or install it on other Debian based distributions, you can download .deb package(s) from release section ([link](https://github.com/kasramp/UbuntuIndicatorWeather/releases)).
 
 ### Via AUR (Arch Linux)
-For Arch Linux, UbuntuIndicatorWeather is available on the Arch User Repository, under the package name ubuntu-indicator-weather  ([link] (https://aur.archlinux.org/packages/ubuntu-indicator-weather/))
+For Arch Linux, UbuntuIndicatorWeather is available on the Arch User Repository, under the package name ubuntu-indicator-weather  ([link](https://aur.archlinux.org/packages/ubuntu-indicator-weather/))
 
 ### Via .tar.gz file
-For non-debian based distributions you can download .tar.gz files which consist of the source code of the indicator from release section ([link] (https://github.com/kasramp/UbuntuIndicatorWeather/releases)). 
+For non-debian based distributions you can download .tar.gz files which consist of the source code of the indicator from release section ([link](https://github.com/kasramp/UbuntuIndicatorWeather/releases)). 
 
 Extract the content of the compressed file and run installation file with root permission.
 
