@@ -8,3 +8,4 @@ Icon=/usr/share/icons/hicolor/64x64/apps/indicator-weather.png
 Categories=GNOME;Weather;
 StartupNotify=false
 Name[en_US]=Simple Weather Indicator
+Categories=GNOME;GTK;Utility;Core;
