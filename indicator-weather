@@ -30,6 +30,7 @@ gi.require_version('AppIndicator3', '0.1')
 gi.require_version('Notify', '0.7')
 from gi.repository import Notify as notification
 from gi.repository import AppIndicator3 as appIndicator
+from retrying import retry
 
 PING_FREQUENCY_IN_SECONDS = 600 # 10 minutes
 
@@ -77,11 +78,15 @@ class WeatherIndicator:
         self.weather_description_item = Gtk.MenuItem("")
         self.weather_description_item.show()
         self.menu.append(self.weather_description_item)
-        # Maximum temperature
+        # Feels Like
+        self.feels_like_temperature_item = Gtk.MenuItem("")
+        self.feels_like_temperature_item.show()
+        self.menu.append(self.feels_like_temperature_item)
+        # Maximum Temperature
         self.maximum_temperature_item = Gtk.MenuItem("")
         self.maximum_temperature_item.show()
         self.menu.append(self.maximum_temperature_item)
-        # Minimum temperature
+        # Minimum Temperature
         self.minimum_temperature_item = Gtk.MenuItem("")
         self.minimum_temperature_item.show()
         self.menu.append(self.minimum_temperature_item)
@@ -111,6 +116,12 @@ class WeatherIndicator:
         self.preference_item.connect("activate", self.preference)
         self.preference_item.show()
         self.menu.append(self.preference_item)
+        
+        self.refresh_item = Gtk.MenuItem(u"Refresh \u27F3")
+        self.refresh_item.connect("activate", self.refresh)
+        self.refresh_item.show()
+        self.menu.append(self.refresh_item)
+        
         self.quit_item = Gtk.MenuItem("Quit")
         self.quit_item.connect("activate", self.quit)
         self.quit_item.show()
@@ -135,11 +146,18 @@ class WeatherIndicator:
         self.configuration.reload_configuration()
         self.get_weather()
 
+    def refresh(self, widget):
+        self.get_weather()
+
     def create_separator_menu_item(self):
         separator = Gtk.SeparatorMenuItem()
         separator.show()
         return separator
 
+    def retry_if_result_none(result):
+        return result is None
+    
+    @retry(stop_max_attempt_number=100, wait_exponential_multiplier=500, wait_exponential_max=60000, retry_on_result=retry_if_result_none)
     def get_weather(self):
         try:
             if(self.configuration.get_temperature_scale()):
@@ -158,8 +176,9 @@ class WeatherIndicator:
             if self.is_weather_changed(json_response):
                 self.notify_user_on_weather_changes(json_response)
             self.set_weather_metrics(json_response)
-        finally:
-            return True # Make sure timer loop continues
+        except:
+            return None
+        return True
 
     def is_weather_changed(self, weather_json):
         last_weather_description = self.weather_description_item.get_label()
@@ -182,6 +201,7 @@ class WeatherIndicator:
 
     def set_weather_metrics(self, json_response):    
         temperature = json_response['temperature']
+        feels_like_temperature = json_response['feelsLike']
         maximum_temperature = json_response['main']['temp_max']
         minimum_temperature = json_response['main']['temp_min']
         temperature_symbol = self.configuration.get_temperature_symbol()
@@ -189,6 +209,7 @@ class WeatherIndicator:
             temperature = int(round(float(temperature)))
             maximum_temperature = int(round(float(maximum_temperature)))
             minimum_temperature = int(round(float(minimum_temperature)))
+            feels_like_temperature = int(round(float(feels_like_temperature)))
         city = self.get_city_name(json_response['geoLocation'].strip().rsplit(",")[:2])
         if(self.configuration.is_hide_location()):
             label = u'{temperature}{temperature_symbol}'.format(**locals())
@@ -198,8 +219,10 @@ class WeatherIndicator:
         self.indicator.set_icon(get_local_icon_name(json_response['iconName']))
         self.temperature_item.get_child().set_text(u'{temperature}{temperature_symbol} {city}'.format(**locals()))
         self.weather_description_item.set_label(string.capwords(json_response['weather'][0]['description']))        
+        feels_like_temperature = u'Feels Like: {feels_like_temperature}{temperature_symbol}'.format(**locals())
         maximum_temperature = u'Maximum: {maximum_temperature}{temperature_symbol}'.format(**locals())
         minimum_temperature = u'Minimum: {minimum_temperature}{temperature_symbol}'.format(**locals())
+        self.feels_like_temperature_item.set_label(feels_like_temperature)
         self.maximum_temperature_item.set_label(maximum_temperature)
         self.minimum_temperature_item.set_label(minimum_temperature)
         humidity = 'Humidity: {}%'.format(json_response['main']['humidity'])
