@@ -22,6 +22,7 @@ import urllib
 import json
 import gi
 import string
+import time
 from preference import Dialog
 from configuration import Configuration
 from gi.repository import Gtk, GLib
@@ -110,6 +111,10 @@ class WeatherIndicator:
         self.visibility_item = Gtk.MenuItem("")
         self.visibility_item.show()
         self.menu.append(self.visibility_item)
+        # Last Update
+        self.last_update_item = Gtk.MenuItem("")
+        self.last_update_item.show()
+        self.menu.append(self.last_update_item)
 
         self.menu.append(self.create_separator_menu_item())
         self.preference_item = Gtk.MenuItem("Preferences")
@@ -241,6 +246,8 @@ class WeatherIndicator:
         self.pressure_item.set_label(pressure)
         visibility = "Visibility: {} meter".format(json_response['visibility'])
         self.visibility_item.set_label(visibility)
+        last_update = 'Last Update: ' + time.strftime("%H:%M:%S %p")
+        self.last_update_item.set_label(last_update)
         
     def convert_to_km_h(self, wind_speed):
         return wind_speed * 18 / 5
