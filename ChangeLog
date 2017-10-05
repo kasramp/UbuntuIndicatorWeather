@@ -1,3 +1,13 @@
+indicator-weather (1.0-0ubuntu5) trusty; urgency=low
+
+  * Add feels like
+  * Add weather notification
+  * Add manual update
+  * Add last update
+  * Prepare 1.0 release from upstream
+
+ -- Kasra Madadipouya <kasra@madadipouya.com>  Thu, 5 Oct 2017 23:45:12 +0800
+
 indicator-weather (0.9-0ubuntu4) trusty; urgency=low
 
   * Moved to Eris API
