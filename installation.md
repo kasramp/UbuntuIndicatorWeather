@@ -55,6 +55,7 @@ Before proceeding to the next step make sure that you have the following package
 - Gir1.2-notify-0.7
 - Python urllib
 - Python json library
+- Python retry library
 
 After that run the installation script with root permission,
 
