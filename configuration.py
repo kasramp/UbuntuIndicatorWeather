@@ -75,7 +75,6 @@ class Configuration:
     def __create_default_configuration_and_save_to_disk(self):
         config = { 
         	Parameter.TEMPERATURE_SCALE: '0',
-            Parameter.WIND_SCALE: '0',
         	Parameter.AUTOMATIC_LOCATION_DETECTION: 'True', 
         	Parameter.LATITUDE: '0.00000', 
         	Parameter.LONGITUDE: '0.00000',
@@ -119,9 +118,6 @@ class Configuration:
         if Parameter.ROUND_TEMPERATURE not in self.json_configuration:
             self.json_configuration[Parameter.ROUND_TEMPERATURE] = 'False'
             self.save_reload_configuration()
-        if Parameter.WIND_SCALE not in self.json_configuration:
-            self.json_configuration[Parameter.WIND_SCALE] = '0'
-            self.save_reload_configuration()
 
     def get_temperature_scale(self):
         return int(self.json_configuration[Parameter.TEMPERATURE_SCALE])
@@ -135,11 +131,17 @@ class Configuration:
         else:
             return u'\u2103'
 
-    def get_wind_scale(self):
-        return int(self.json_configuration[Parameter.WIND_SCALE])
+    def get_wind_speed_unit(self):
+        if self.get_temperature_scale():
+            return 'mph'
+        else:
+            return 'km/h'
 
-    def set_wind_scale(self, value):
-        self.json_configuration[Parameter.WIND_SCALE] = int(value)
+    def get_visibility_unit(self):
+        if self.get_temperature_scale():
+            return 'mile'
+        else:
+            return 'kilometer'
 
     def get_automatic_location_detection(self):
         return self.is_automatic_location_detection()
@@ -211,7 +213,6 @@ class Parameter:
     LONGITUDE = 'longitude'
     AUTOMATIC_LOCATION_DETECTION = 'automatic_location_detection'
     TEMPERATURE_SCALE = 'temperature_scale'
-    WIND_SCALE = 'wind_scale'
     HIDE_LOCATION = 'hide_location'
     ROUND_TEMPERATURE = 'round_temperature'
 

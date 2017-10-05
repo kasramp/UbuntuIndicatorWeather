@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.18.3 -->
 <interface>
-  <requires lib="gtk+" version="3.10"/>
+  <requires lib="gtk+" version="3.12"/>
   <object class="GtkAdjustment" id="adjustment1">
     <property name="lower">-90</property>
     <property name="upper">90</property>
@@ -21,24 +21,10 @@
     </columns>
     <data>
       <row>
-        <col id="0">Celsius (°C)</col>
+        <col id="0">°C, km, km/h</col>
       </row>
       <row>
-        <col id="0">Fahrenheit (°F)</col>
-      </row>
-    </data>
-  </object>
-  <object class="GtkListStore" id="list_wind_scale">
-    <columns>
-      <!-- column-name column_wind_scale -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Kilos (kmh)</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Miles (mph)</col>
+        <col id="0">°F, mile, mph</col>
       </row>
     </data>
   </object>
@@ -132,7 +118,7 @@
               </object>
               <packing>
                 <property name="x">10</property>
-                <property name="y">70</property>
+                <property name="y">81</property>
               </packing>
             </child>
             <child>
@@ -143,31 +129,31 @@
               </object>
               <packing>
                 <property name="x">10</property>
-                <property name="y">105</property>
+                <property name="y">116</property>
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label_temperature">
+              <object class="GtkLabel" id="label_measurement_unit_temperature">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Temperature &amp; Wind</property>
+                <property name="label" translatable="yes">Measurement Unit &amp; Temperature</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
                 </attributes>
               </object>
               <packing>
-                <property name="y">175</property>
+                <property name="y">195</property>
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label_temperature_scale">
+              <object class="GtkLabel" id="label_measurement_units">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Temperature Scale:</property>
+                <property name="label" translatable="yes">Measurement Units:</property>
               </object>
               <packing>
                 <property name="x">10</property>
-                <property name="y">205</property>
+                <property name="y">225</property>
               </packing>
             </child>
             <child>
@@ -178,7 +164,7 @@
               </object>
               <packing>
                 <property name="x">10</property>
-                <property name="y">135</property>
+                <property name="y">155</property>
               </packing>
             </child>
             <child>
@@ -189,7 +175,7 @@
               </object>
               <packing>
                 <property name="x">10</property>
-                <property name="y">280</property>
+                <property name="y">270</property>
               </packing>
             </child>
             <child>
@@ -200,7 +186,7 @@
               </object>
               <packing>
                 <property name="x">230</property>
-                <property name="y">278</property>
+                <property name="y">266</property>
               </packing>
             </child>
             <child>
@@ -222,7 +208,7 @@
               </object>
               <packing>
                 <property name="x">152</property>
-                <property name="y">200</property>
+                <property name="y">219</property>
               </packing>
             </child>
             <child>
@@ -233,7 +219,7 @@
               </object>
               <packing>
                 <property name="x">230</property>
-                <property name="y">132</property>
+                <property name="y">151</property>
               </packing>
             </child>
             <child>
@@ -249,7 +235,7 @@
               </object>
               <packing>
                 <property name="x">158</property>
-                <property name="y">100</property>
+                <property name="y">111</property>
               </packing>
             </child>
             <child>
@@ -266,7 +252,7 @@
               </object>
               <packing>
                 <property name="x">158</property>
-                <property name="y">65</property>
+                <property name="y">76</property>
               </packing>
             </child>
             <child>
@@ -279,7 +265,7 @@
               </object>
               <packing>
                 <property name="x">230</property>
-                <property name="y">35</property>
+                <property name="y">36</property>
               </packing>
             </child>
             <child>
@@ -294,7 +280,7 @@
                 </attributes>
               </object>
               <packing>
-                <property name="y">333</property>
+                <property name="y">310</property>
               </packing>
             </child>
             <child>
@@ -307,7 +293,7 @@
               </object>
               <packing>
                 <property name="x">10</property>
-                <property name="y">363</property>
+                <property name="y">345</property>
               </packing>
             </child>
             <child>
@@ -322,42 +308,7 @@
               </object>
               <packing>
                 <property name="x">230</property>
-                <property name="y">361</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label_wind_scale">
-                <property name="width_request">77</property>
-                <property name="height_request">20</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Wind Scale:</property>
-              </object>
-              <packing>
-                <property name="x">10</property>
-                <property name="y">238</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkComboBox" id="combo_wind_scale">
-                <property name="width_request">153</property>
-                <property name="height_request">29</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="model">list_wind_scale</property>
-                <property name="active">0</property>
-                <property name="add_tearoffs">True</property>
-                <property name="button_sensitivity">on</property>
-                <child>
-                  <object class="GtkCellRendererText" id="cellrenderertext2"/>
-                  <attributes>
-                    <attribute name="text">0</attribute>
-                  </attributes>
-                </child>
-              </object>
-              <packing>
-                <property name="x">152</property>
-                <property name="y">240</property>
+                <property name="y">341</property>
               </packing>
             </child>
           </object>

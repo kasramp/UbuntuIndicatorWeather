@@ -201,9 +201,6 @@ class WeatherIndicator:
         self.weather_notification.update("Recent Weather Changes", weather_description, icon)
         self.weather_notification.show()
                
-    def is_not_blank(self, string):
-        return bool(string and string.strip())
-
     def set_weather_metrics(self, json_response):    
         temperature = json_response['temperature']
         feels_like_temperature = json_response['feelsLike']
@@ -232,25 +229,23 @@ class WeatherIndicator:
         self.minimum_temperature_item.set_label(minimum_temperature)
         humidity = 'Humidity: {}%'.format(json_response['main']['humidity'])
         self.humidity_item.set_label(humidity)
-        if(self.configuration.get_wind_scale()):
-            wind_speed = json_response['wind']['speed']
-            wind_speed_unit = "mph"
-        else:
-            wind_speed = self.convert_to_km_h(json_response['wind']['speed'])
-            wind_speed_unit = "km/h"
-        wind  = 'Wind: {wind_speed} {wind_speed_unit}'.format(**locals())
-        self.wind_item.set_label(wind)
+        wind_speed_unit = self.configuration.get_wind_speed_unit()
+        wind_speed = json_response['wind']['speed']
+        wind_speed  = 'Wind: {wind_speed} {wind_speed_unit}'.format(**locals())
+        self.wind_item.set_label(wind_speed)
         cloudiness = 'Cloudiness: {}%'.format(json_response['clouds']['all'])
         self.cloudiness_item.set_label(cloudiness)
         pressure = "Pressure: {} hPa".format(json_response['main']['pressure'])
         self.pressure_item.set_label(pressure)
-        visibility = "Visibility: {} meter".format(json_response['visibility'])
+        visibility = json_response['visibility']
+        visibility_unit = self.configuration.get_visibility_unit()
+        visibility = "Visibility: {visibility} {visibility_unit}".format(**locals())
         self.visibility_item.set_label(visibility)
-        last_update = 'Last Update: ' + time.strftime("%H:%M:%S %p")
+        last_update = 'Last Update: ' + time.strftime("%I:%M:%S %p")
         self.last_update_item.set_label(last_update)
         
-    def convert_to_km_h(self, wind_speed):
-        return wind_speed * 18 / 5
+    def is_not_blank(self, string):
+        return bool(string and string.strip())
 
     def get_city_name(self, location):
         try:    # If location[0] is number, then we will show location[1], which is street
