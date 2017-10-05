@@ -10,6 +10,7 @@ The indicator has dependencies for Python >= 2.7 and requires some Python librar
 * Gir1.2-notify-0.7
 * Python urllib
 * Python json library
+* Python retry library
 
 ## How to install
 ### Via PPA (Ubuntu only version 0.7 and onwards)
