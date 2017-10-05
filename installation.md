@@ -86,4 +86,4 @@ First clone the repository,
 
 `git clone git@github.com:kasramp/UbuntuIndicatorWeather.git`
 
-Then follow "Via source code (Stable release)" instructions.
+Then follow [Via source code (Stable release)](#via-source-code-stable-release) instruction.
