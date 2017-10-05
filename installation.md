@@ -45,7 +45,7 @@ If you are using any Debian based distribution except Ubuntu, you can download `
 For Arch Linux, Simple Weather Indicator is available on the Arch User Repository, under the package name ubuntu-indicator-weather via this link:
 [https://aur.archlinux.org/packages/ubuntu-indicator-weather/](https://aur.archlinux.org/packages/ubuntu-indicator-weather/)
 
-### Via source code
+### Via source code (Stable release)
 At the moment other Linux distributions users have to rely on source code to use this indicator. To do that, download `.tar.gz` package of your desired version from releases section and uncompress it to any desire location. 
 
 Before proceeding to the next step make sure that you have the following packages installed on your system.
@@ -66,3 +66,24 @@ The last step is to run the indicator using the following command,
 `indicator-weather`
 
 To make the indicator to start automatically on system startup, depends on your desktop/window manager, you need to add `indicator-weather` file to the startup script.
+
+### Via source code (Prerelease)
+It is also possible to install/test prerelease version of indicator. There are two approaches available depends on the Linux distribution.
+
+#### Debian based distributions
+First clone the repository,
+
+`git clone git@github.com:kasramp/UbuntuIndicatorWeather.git`
+
+Then run `install_dependencies_debian.sh` script with root permission,
+
+`sudo ./install_dependencies_debian.sh`
+
+The script install all the necessary dependencies via `apt`. As a result, no need to manually install any packages.
+
+#### Non-debian distributions
+First clone the repository,
+
+`git clone git@github.com:kasramp/UbuntuIndicatorWeather.git`
+
+Then follow "Via source code (Stable release)" instructions.
