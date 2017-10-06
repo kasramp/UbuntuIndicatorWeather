@@ -82,13 +82,15 @@ avatarurl: "https://raw.githubusercontent.com/kasramp/UbuntuIndicatorWeather/mas
 # 8. Site navigation
 navigation_header:
   Home: /
-  Installation: /installation
+  Installation: /installation/
   Announcements: /blog/
+  Donate: /donate/
   Releases: https://github.com/kasramp/UbuntuIndicatorWeather/releases
   Found a bug?: https://github.com/kasramp/UbuntuIndicatorWeather/issues
   Contributers: https://github.com/kasramp/UbuntuIndicatorWeather/graphs/contributors
   License: https://github.com/kasramp/UbuntuIndicatorWeather/blob/master/LICENSE
   Fork Me: https://github.com/kasramp/UbuntuIndicatorWeather
+
   
 
 
