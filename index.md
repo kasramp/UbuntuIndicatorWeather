@@ -18,10 +18,12 @@ Simple Weather Indicator is an elegant and very simple weather indicator for Ubu
 	- Automatic/manual location detection
 	- Show/hide location
 	- Enable/disable indicator startup
-	- Temperature scale suppert (Celsius, Fahrenheit)
+	- Unit of measurement support (Metric, Imperial)
 	- Rounding weather temperature
 - Feature-rich
+    - Weather change notification
     - Overall weather condition
+    - Feels like
     - Humdity level
     - Wind speed
     - Weather cloudiness
