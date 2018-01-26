@@ -192,7 +192,12 @@ class WeatherIndicator:
             last_location = last_location.split(' ', 1)[1]
             current_weather_description = string.capwords(weather_json['weather'][0]['description'])
             current_location = self.get_city_name(weather_json['geoLocation'].strip().rsplit(",")[:2])
-            return last_weather_description != current_weather_description or unicode(last_location) != unicode(current_location)
+            try:
+                last_location = unicode(last_location, 'utf-8')
+                current_location = unicode(current_location, 'utf-8')
+            except TypeError:
+                pass
+            return last_weather_description != current_weather_description or last_location != current_location
         return False
 
     def notify_user_on_weather_changes(self, weather_json):
