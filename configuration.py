@@ -139,9 +139,9 @@ class Configuration:
 
     def get_visibility_unit(self):
         if self.get_temperature_scale():
-            return 'mile'
+            return 'mi'
         else:
-            return 'kilometer'
+            return 'km'
 
     def get_automatic_location_detection(self):
         return self.is_automatic_location_detection()
