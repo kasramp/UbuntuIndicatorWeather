@@ -29,7 +29,7 @@ class Dialog:
         self.load_user_preferences_to_ui()
 
     def load_user_preferences_to_ui(self):
-        combo_temperature_scale, switch_automatic_location_detection, latitude, longitude, switch_hide_location, switch_round_temperature, switch_autostart = self.get_ui_objects()
+        combo_temperature_scale, switch_automatic_location_detection, latitude, longitude, switch_hide_location, switch_round_temperature, switch_autostart, switch_notifications = self.get_ui_objects()
         combo_temperature_scale.set_active(self.configuration.get_temperature_scale())
         switch_automatic_location_detection.set_state(self.configuration.get_automatic_location_detection())
         latitude.set_sensitive(not switch_automatic_location_detection.get_state())
@@ -39,6 +39,7 @@ class Dialog:
         switch_hide_location.set_state(self.configuration.get_hide_location())
         switch_round_temperature.set_state(self.configuration.get_round_temperature())
         switch_autostart.set_state(self.configuration.get_auto_start())
+        switch_notifications.set_state(self.configuration.get_notifications())
     
     def get_ui_objects(self):
         combo_temperature_scale = self.builder.get_object('combo_temperature_scale')
@@ -48,14 +49,15 @@ class Dialog:
         switch_hide_location = self.builder.get_object('switch_hide_location')
         switch_round_temperature = self.builder.get_object('switch_round_temperature')
         switch_autostart = self.builder.get_object('switch_autostart')
-        return combo_temperature_scale, switch_automatic_location_detection, latitude, longitude, switch_hide_location, switch_round_temperature, switch_autostart
+        switch_notifications = self.builder.get_object('switch_notifications')
+        return combo_temperature_scale, switch_automatic_location_detection, latitude, longitude, switch_hide_location, switch_round_temperature, switch_autostart, switch_notifications
 
     def on_cancel_button_clicked(self, widget, data=None):
         self.window.destroy()
         Gtk.main_quit()
 
     def on_ok_button_clicked(self, widget, data=None):
-        combo_temperature_scale, switch_automatic_location_detection, latitude, longitude, switch_hide_location, switch_round_temperature, switch_autostart = self.get_ui_objects()
+        combo_temperature_scale, switch_automatic_location_detection, latitude, longitude, switch_hide_location, switch_round_temperature, switch_autostart, switch_notifications = self.get_ui_objects()
         self.configuration.set_temperature_scale(combo_temperature_scale.get_active())
         self.configuration.set_automatic_location_detection(str(switch_automatic_location_detection.get_active()).title())
         self.configuration.set_latitude(latitude.get_value())
@@ -63,6 +65,7 @@ class Dialog:
         self.configuration.set_hide_location(str(switch_hide_location.get_active()).title())
         self.configuration.set_round_temperature(str(switch_round_temperature.get_active()).title())
         self.configuration.set_auto_start(str(switch_autostart.get_active()).title())
+        self.configuration.set_notifications(str(switch_notifications.get_active()).title())
         self.configuration.save_configuration()
         self.configuration.save_ini_start_up_script()
         self.on_cancel_button_clicked(widget)
