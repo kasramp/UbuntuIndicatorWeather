@@ -204,7 +204,8 @@ class WeatherIndicator:
         icon = get_local_icon_name(weather_json['iconName'])
         weather_description = string.capwords(weather_json['weather'][0]['description'])
         self.weather_notification.update("Recent Weather Changes", weather_description, icon)
-        self.weather_notification.show()
+        if self.configuration.get_notifications():
+            self.weather_notification.show()
                
     def set_weather_metrics(self, json_response):    
         temperature = json_response['temperature']
