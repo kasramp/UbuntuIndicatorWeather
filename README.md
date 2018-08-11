@@ -27,7 +27,7 @@ To install the weather indicator run:
 
 #### Supported Ubuntu versions
 * Bionic Beaver 18.04 LTS
-* ~~Zesty Zapus 17.04~~
+* ~~Zesty Zapus 17.04 (Ubtil version 1.0)~~
 * ~~Yakkety Yak 16.10 (Until version 0.9.0)~~
 * Xenial Xerus 16.04 LTS
 * ~~Wily Werewolf 15.10 (Until version 0.8.2)~~
