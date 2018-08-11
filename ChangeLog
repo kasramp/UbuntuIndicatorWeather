@@ -1,3 +1,11 @@
+indicator-weather (1.1-0ubuntu6) trusty; urgency=low
+
+  * Option to turn weather notification off
+  * Bug fixes
+  * Prepare 1.1 release from upstream
+
+ -- Kasra Madadipouya <kasra@madadipouya.com>  Sat, 11 Aug 2018 13:30:00 +0800
+
 indicator-weather (1.0-0ubuntu5) trusty; urgency=low
 
   * Add feels like
