@@ -79,7 +79,8 @@ class Configuration:
         	Parameter.LATITUDE: '0.00000', 
         	Parameter.LONGITUDE: '0.00000',
             Parameter.HIDE_LOCATION: 'False',
-            Parameter.ROUND_TEMPERATURE: 'False'
+            Parameter.ROUND_TEMPERATURE: 'False',
+            Parameter.NOTIFICATIONS: 'True'
         }
         self.__save_configuration_to_disk(config)
         return self.__load_configuration_from_disk()
@@ -118,6 +119,9 @@ class Configuration:
         if Parameter.ROUND_TEMPERATURE not in self.json_configuration:
             self.json_configuration[Parameter.ROUND_TEMPERATURE] = 'False'
             self.save_reload_configuration()
+        if Parameter.NOTIFICATIONS not in self.json_configuration:
+            self.json_configuration[Parameter.NOTIFICATIONS] = 'True'
+            self.save_reload_configuration()
 
     def get_temperature_scale(self):
         return int(self.json_configuration[Parameter.TEMPERATURE_SCALE])
@@ -139,9 +143,9 @@ class Configuration:
 
     def get_visibility_unit(self):
         if self.get_temperature_scale():
-            return 'mile'
+            return 'mi'
         else:
-            return 'kilometer'
+            return 'km'
 
     def get_automatic_location_detection(self):
         return self.is_automatic_location_detection()
@@ -195,6 +199,15 @@ class Configuration:
     def set_auto_start(self, value):
         return self.ini_start_up.set(Startup.SECTION_DESKTOP_ENTRY, Startup.SETTING_NAME_X_GNOME_AUTO_START_ENABLED, value.lower())
 
+    def get_notifications(self):
+        return self.is_notifications()
+
+    def set_notifications(self, value):
+        self.json_configuration[Parameter.NOTIFICATIONS] = value
+
+    def is_notifications(self):
+        return ast.literal_eval(self.json_configuration[Parameter.NOTIFICATIONS])
+
     def save_configuration(self):
         self.__save_configuration_to_disk(self.json_configuration)
 
@@ -215,6 +228,7 @@ class Parameter:
     TEMPERATURE_SCALE = 'temperature_scale'
     HIDE_LOCATION = 'hide_location'
     ROUND_TEMPERATURE = 'round_temperature'
+    NOTIFICATIONS = 'notifications'
 
 class Startup:
     SECTION_DESKTOP_ENTRY = 'Desktop Entry'

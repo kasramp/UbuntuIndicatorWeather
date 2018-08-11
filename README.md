@@ -58,6 +58,11 @@ For more information please refer to [Simple Weather Indicator](http://simplewea
 <img src="http://blog.madadipouya.com/wp-content/uploads/2014/07/Screenshot-from-2015-12-25-14-08-10.png" alt="Simple Weather Indicator" height="26" width="148"/>
 </p>
 
+## Donate
+You can always support, show appreciation by buying a cup of coffee :-)
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=C68PYFWLT332S)
+
 ## Contact
 * kasra@madadipouya.com
 * kasra_mp@live.com
