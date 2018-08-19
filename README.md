@@ -26,7 +26,8 @@ To install the weather indicator run:
 `$ sudo apt-get install indicator-weather`
 
 #### Supported Ubuntu versions
-* Zesty Zapus 17.04
+* Bionic Beaver 18.04 LTS
+* ~~Zesty Zapus 17.04 (Until version 1.0)~~
 * ~~Yakkety Yak 16.10 (Until version 0.9.0)~~
 * Xenial Xerus 16.04 LTS
 * ~~Wily Werewolf 15.10 (Until version 0.8.2)~~
@@ -83,5 +84,5 @@ GNU General Public License for more details.  <http://www.gnu.org/licenses/>
 
 Author(s):
 
-© 2015-2017 Kasra Madadipouya <kasra@madadipouya.com>
+© 2015-2018 Kasra Madadipouya <kasra@madadipouya.com>
 
