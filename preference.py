@@ -9,7 +9,7 @@
 # GNU General Public License for more details.  <http://www.gnu.org/licenses/>
 #
 # Author(s):
-# (C) 2015 Kasra Madadipouya <kasra@madadipouya.com>
+# (C) 2015-2018 Kasra Madadipouya <kasra@madadipouya.com>
 
 import gi
 gi.require_version('Gtk', '3.0')
