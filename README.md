@@ -1,6 +1,6 @@
 # UbuntuIndicatorWeather ![Tag](https://img.shields.io/github/tag/kasramp/UbuntuIndicatorWeather.svg)
 ## Description
-UbuntuIndicatorWeather is a very simple weather indicator for Ubuntu unity and Gnome 3. It is developed with Python and uses two web service calls [Ip-api.com](http://ip-api.com/), [Weather-api.madadipouya.com](http://weather-api.madadipouya.com/) (based on [Open Weather Map](http://api.openweathermap.org/)) to detect user's location and temperature respectively. 
+UbuntuIndicatorWeather is a very simple weather indicator for Ubuntu unity and Gnome 3. It is developed with Python and uses two web service calls [Ip-api.com](http://ip-api.com/), [Weather-api.madadipouya.com](https://weather-api.madadipouya.com/) (based on [Open Weather Map](http://api.openweathermap.org/)) to detect user's location and temperature respectively. 
 
 ## Dependencies
 The indicator has dependencies for Python >= 2.7 and requires some Python libraries which are listed below
@@ -52,11 +52,11 @@ Extract the content of the compressed file and run installation file with root p
 `$ sudo ./install.sh`
 
 ## Website
-For more information please refer to [Simple Weather Indicator](http://simpleweatherindicator.madadipouya.com/) website.
+For more information please refer to [Simple Weather Indicator](https://simpleweatherindicator.madadipouya.com/) website.
 
 ## Screenshot
 <p align="center">
-<img src="http://blog.madadipouya.com/wp-content/uploads/2014/07/Screenshot-from-2015-12-25-14-08-10.png" alt="Simple Weather Indicator" height="26" width="148"/>
+<img src="https://blog.madadipouya.com/wp-content/uploads/2014/07/Screenshot-from-2015-12-25-14-08-10.png" alt="Simple Weather Indicator" height="26" width="148"/>
 </p>
 
 ## Donate
