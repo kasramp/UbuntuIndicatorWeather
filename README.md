@@ -56,7 +56,7 @@ For more information please refer to [Simple Weather Indicator](https://simplewe
 
 ## Screenshot
 <p align="center">
-<img src="https://blog.madadipouya.com/wp-content/uploads/2014/07/Screenshot-from-2015-12-25-14-08-10.png" alt="Simple Weather Indicator" height="26" width="148"/>
+<img src="https://user-images.githubusercontent.com/4501120/47316017-5f510480-d646-11e8-9f8e-a1d117400824.png" alt="Simple Weather Indicator" height="26" width="148"/>
 </p>
 
 ## Donate
