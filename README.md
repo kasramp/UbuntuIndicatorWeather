@@ -66,7 +66,6 @@ You can always support, show appreciation by buying a cup of coffee :-)
 
 ## Contact
 * kasra@madadipouya.com
-* kasra_mp@live.com
 	
 ## License
 <p>
